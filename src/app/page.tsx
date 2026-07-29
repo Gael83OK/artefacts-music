@@ -136,7 +136,7 @@ export default async function Home() {
 
               <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[#1E6FB8]/5 blur-3xl transition-all duration-300 group-hover:bg-[#1E6FB8]/15" />
 
-              <div className="relative flex items-center gap-6">
+              <div className="relative flex items-center gap-5">
 
                 <div className="relative">
 
@@ -195,12 +195,6 @@ export default async function Home() {
                     </p>
 
                   )}
-
-                </div>
-
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#F4F8FD] text-3xl text-[#1E6FB8] transition-all duration-300 group-hover:translate-x-2 group-hover:bg-[#1E6FB8] group-hover:text-white">
-
-                  →
 
                 </div>
 
