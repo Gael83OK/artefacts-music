@@ -14,7 +14,7 @@ export default function AvailabilityCalendar({
   return (
     <div className="rounded-[32px] bg-white p-6 shadow-sm">
       <h2 className="mb-6 text-2xl font-semibold">
-        Mes disponibilités
+      Mes indisponibilités
       </h2>
 
       <p className="mb-4 text-sm text-gray-500">
