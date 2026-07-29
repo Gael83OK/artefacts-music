@@ -172,7 +172,7 @@ export default async function Home() {
 
                 <div className="min-w-0 flex-1">
 
-                  <h3 className="truncate text-[30px] font-black tracking-tight transition-colors duration-300 group-hover:text-[#1E6FB8]">
+                <h3 className="text-[26px] font-black tracking-tight leading-none transition-colors duration-300 group-hover:text-[#1E6FB8]">
                     {musician.prenom}
                   </h3>
 
