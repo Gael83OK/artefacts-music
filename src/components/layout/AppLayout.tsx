@@ -14,7 +14,7 @@ export function AppLayout({ children }: AppLayoutProps) {
       </header>
 
       {/* Contenu principal */}
-      <main className="px-5 pb-28 pt-6 safe-top">
+      <main className="px-5 pt-6 pb-16 safe-top">
         {children}
       </main>
 
