@@ -20,7 +20,11 @@ export default function PrestationsPage() {
 
       <div className="space-y-5">
         {mockPrestations.map((prestation) => (
-          <Card key={prestation.id} interactive>
+          <Card
+            key={prestation.id}
+            interactive
+            className="overflow-hidden min-h-[220px]"
+          >
             <div className="space-y-5">
               <div className="flex items-start justify-between">
                 <div>
@@ -48,11 +52,11 @@ export default function PrestationsPage() {
                     Musiciens
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap items-start gap-2">
                     {prestation.musicians.map((musician) => (
                       <span
                         key={musician}
-                        className="rounded-full bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700"
+                        className="max-w-full break-words rounded-full bg-slate-100 px-3 py-2 text-xs font-medium text-slate-700"
                       >
                         {musician}
                       </span>
