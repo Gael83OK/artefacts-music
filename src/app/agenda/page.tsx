@@ -89,7 +89,7 @@ export default async function AgendaPage() {
 
                   <div className="min-w-0 flex-1">
 
-                  <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex items-center justify-between gap-4">
 
                       <div>
 
@@ -101,7 +101,7 @@ export default async function AgendaPage() {
 
                         </p>
 
-                        <h2 className="text-2xl sm:text-3xl font-black leading-tight text-[#243B53] break-words">
+                        <h2 className="text-xl sm:text-3xl font-black leading-tight text-[#243B53]">
                           {formatDate(event.date)}
                         </h2>
 
