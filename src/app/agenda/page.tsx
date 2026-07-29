@@ -89,7 +89,7 @@ export default async function AgendaPage() {
 
                   <div className="min-w-0 flex-1">
 
-                    <div className="flex items-center justify-between gap-4">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
                       <div>
 
@@ -117,7 +117,7 @@ export default async function AgendaPage() {
 
                     </div>
 
-                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="mt-6 flex items-start gap-4">
 
 <div className="mt-1 flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl bg-[#F6F2EA] shadow-sm">
 
