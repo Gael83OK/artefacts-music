@@ -7,7 +7,11 @@
 export type LegacyEventStatus = "confirmed" | "pending" | "cancelled";
 
 /** @deprecated Utiliser VenueType et les nouveaux modèles Event */
-export type EventType = "prestation" | "repetition" | "production" | "logistique";
+export type EventType =
+  | "prestation"
+  | "repetition"
+  | "production"
+  | "logistique";
 
 /** @deprecated Utiliser Event de event.ts */
 export interface LegacyEvent {
@@ -49,4 +53,10 @@ export interface WeekPlanItem {
 }
 
 /** Navigation — identifiants des routes principales */
-export type NavItemId = "home" | "agenda" | "prestations" | "materiel" | "profil";
+export type NavItemId =
+  | "home"
+  | "agenda"
+  | "prestations"
+  | "materiel"
+  | "profil"
+  | "equipe";

@@ -47,12 +47,12 @@ export default async function Home() {
       </section>
 
       <section className="mb-10">
-        <Link
-          href="/admin"
-          className="block rounded-3xl bg-[#1E6FB8] p-6 text-center text-xl font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-xl active:scale-[0.98]"
-        >
-          👑 Accéder à l'espace Production
-        </Link>
+      <Link
+  href="/admin"
+  className="block rounded-3xl bg-[#1E6FB8] p-6 text-center text-xl font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-xl active:scale-[0.98]"
+>
+  👑 Accéder à l&apos;espace Production
+</Link>
       </section>
 
       <section>
