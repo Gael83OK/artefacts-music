@@ -101,23 +101,23 @@ export default async function AgendaPage() {
 
                         </p>
 
-                        <h2 className="text-3xl font-black leading-tight text-[#243B53]">
+                        <h2 className="text-2xl sm:text-3xl font-black leading-tight text-[#243B53] break-words">
                           {formatDate(event.date)}
                         </h2>
 
                       </div>
 
                       <span
-                        className={`rounded-full border px-5 py-2 text-sm font-bold shadow-sm ${formationColor(
-                          event.formation
-                        )}`}
-                      >
+  className={`self-start rounded-full border px-4 py-2 text-sm font-bold shadow-sm ${formationColor(
+    event.formation
+  )}`}
+>
                         {event.formation ?? "Formation"}
                       </span>
 
                     </div>
 
-                    <div className="mt-6 flex items-start gap-4">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
 <div className="mt-1 flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl bg-[#F6F2EA] shadow-sm">
 
