@@ -63,7 +63,7 @@ export default async function Home() {
 
         <p className="mt-4 max-w-md text-lg leading-8 text-slate-600">
           Retrouvez vos événements, vos musiciens, votre matériel et toute
-          l'organisation du groupe depuis une seule application.
+          l&apos;organisation du groupe depuis une seule application.
         </p>
 
       </section>
@@ -119,7 +119,7 @@ export default async function Home() {
 
           <p className="mt-3 max-w-lg text-lg leading-8 text-slate-500">
             Retrouvez votre planning, vos prestations, votre matériel et toutes
-            les informations de l'équipe.
+            les informations de l&apos;équipe.
           </p>
 
         </div>

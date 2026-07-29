@@ -61,7 +61,7 @@ export default function MaterielPage() {
                     </h2>
 
                     <p className="mt-1 text-sm text-gray-500">
-                      Consulter l'inventaire
+                    Consulter l&apos;inventaire
                     </p>
                   </div>
                 </div>
