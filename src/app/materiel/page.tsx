@@ -1,82 +1,74 @@
 /**
- * Page Matériel — inventaire et statut des équipements
+ * Page Matériel — catégories d'inventaire
  */
 
-import { Package, MapPin } from "lucide-react";
+import Link from "next/link";
+import { Speaker, Lightbulb, Package } from "lucide-react";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Card } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
-import { mockEquipment, mockEquipmentSummary } from "@/lib/mock-data";
 
-/** Labels français pour les catégories de matériel */
-const categoryLabels: Record<string, string> = {
-  Son: "🔊 Son",
-  Lumière: "💡 Lumière",
-  Accessoires: "🔧 Accessoires",
-};
+const categories = [
+  {
+    title: "Son",
+    slug: "son",
+    icon: Speaker,
+    color: "bg-sky-100 text-sky-700",
+  },
+  {
+    title: "Lumières",
+    slug: "lumieres",
+    icon: Lightbulb,
+    color: "bg-amber-100 text-amber-700",
+  },
+  {
+    title: "Autres",
+    slug: "autres",
+    icon: Package,
+    color: "bg-slate-100 text-slate-700",
+  },
+];
 
 export default function MaterielPage() {
-  const { total, available, inUse, maintenance } = mockEquipmentSummary;
-
   return (
     <AppLayout>
       <PageHeader
         title="Matériel"
-        subtitle="Gestion de l'inventaire"
+        subtitle="Choisissez une catégorie"
       />
 
-      {/* Résumé en haut de page */}
-      <div className="mb-6 grid grid-cols-4 gap-2">
-        {[
-          { label: "Total", value: total, color: "text-gray-900" },
-          { label: "Dispo.", value: available, color: "text-green-600" },
-          { label: "En cours", value: inUse, color: "text-mediterranean" },
-          { label: "Maint.", value: maintenance, color: "text-rose" },
-        ].map((stat) => (
-          <div
-            key={stat.label}
-            className="flex flex-col items-center rounded-2xl bg-white p-3 shadow-card"
-          >
-            <span className={`text-xl font-bold ${stat.color}`}>
-              {stat.value}
-            </span>
-            <span className="text-[10px] text-gray-500">{stat.label}</span>
-          </div>
-        ))}
-      </div>
+      <div className="space-y-5">
+        {categories.map((category) => {
+          const Icon = category.icon;
 
-      {/* Liste des équipements */}
-      <div className="space-y-3">
-        {mockEquipment.map((item) => (
-          <Card key={item.id} interactive>
-            <div className="flex items-center gap-4">
-              {/* Icône catégorie */}
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-light-blue/20">
-                <Package className="h-6 w-6 text-mediterranean" />
-              </div>
+          return (
+            <Link
+              key={category.slug}
+              href={`/materiel/${category.slug}`}
+              className="block"
+            >
+              <Card interactive>
+                <div className="flex items-center gap-5 py-2">
+                  <div
+                    className={`flex h-16 w-16 items-center justify-center rounded-3xl ${category.color}`}
+                  >
+                    <Icon className="h-8 w-8" />
+                  </div>
 
-              <div className="min-w-0 flex-1">
-                <div className="flex items-start justify-between gap-2">
-                  <div>
-                    <h3 className="text-sm font-semibold text-gray-900">
-                      {item.name}
-                    </h3>
-                    <p className="text-xs text-gray-500">
-                      {categoryLabels[item.category] || item.category}
+                  <div className="flex-1">
+                    <h2 className="text-2xl font-bold text-[#243B53]">
+                      {category.title}
+                    </h2>
+
+                    <p className="mt-1 text-sm text-gray-500">
+                      Consulter l'inventaire
                     </p>
                   </div>
-                  <Badge variant={item.status} label="" />
                 </div>
-
-                <div className="mt-2 flex items-center gap-1.5 text-xs text-gray-400">
-                  <MapPin className="h-3 w-3" />
-                  <span>{item.location}</span>
-                </div>
-              </div>
-            </div>
-          </Card>
-        ))}
+              </Card>
+            </Link>
+          );
+        })}
       </div>
     </AppLayout>
   );
