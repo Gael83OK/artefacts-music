@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-offwhite text-slate-900 font-sans selection:bg-mediterranean-100 selection:text-mediterranean-900;
+  }
+
+  /* Thin elegant scrollbars (style macOS / Linear) */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-200 rounded-full hover:bg-slate-300 transition-colors;
+  }
+}
+
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: max(16px, env(safe-area-inset-bottom, 16px));
+  }
+
+  .safe-top {
+    padding-top: max(12px, env(safe-area-inset-top, 12px));
+  }
+
+  .min-h-touch {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .glass-panel {
+    @apply bg-white/85 backdrop-blur-md border border-slate-200/70 shadow-sm;
+  }
+
+  .glass-nav {
+    @apply bg-white/90 backdrop-blur-xl border-b border-slate-200/80;
+  }
+
+  /* Micro-interactions & animations mobile-first */
+  .animate-fade-in {
+    animation: fadeIn 0.25s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
