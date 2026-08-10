@@ -21,11 +21,11 @@ export function SearchInput({
       <input
         type="text"
         placeholder={placeholder}
-        className="w-full h-10 pl-10 pr-12 text-sm bg-slate-100/70 border border-slate-200/80 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-mediterranean-500/30 focus:border-mediterranean-500/80 focus:bg-white transition-all"
+        className="w-full h-10 min-h-[44px] pl-10 pr-12 text-xs sm:text-sm bg-slate-100/80 border border-slate-200/90 rounded-2xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-mediterranean-500/30 focus:border-mediterranean-500/80 focus:bg-white transition-all font-medium"
         {...props}
       />
       {showShortcut && (
-        <div className="absolute right-3 hidden sm:flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-medium text-slate-400 bg-slate-200/60 rounded border border-slate-300/40 pointer-events-none">
+        <div className="absolute right-3 hidden sm:flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-bold text-slate-400 bg-white rounded-md border border-slate-200 shadow-xs pointer-events-none">
           <span>⌘</span>
           <span>K</span>
         </div>

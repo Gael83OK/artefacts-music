@@ -17,10 +17,10 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-2xl bg-white p-5 text-slate-900 shadow-card transition-all duration-200",
-        bordered && "border border-slate-200/70",
+        "rounded-2xl bg-white p-4 sm:p-5 text-slate-900 shadow-[0_2px_12px_-2px_rgba(15,23,42,0.06),0_1px_4px_0_rgba(15,23,42,0.03)] transition-all duration-200",
+        bordered && "border border-slate-200/80",
         interactive &&
-          "cursor-pointer hover:shadow-card-hover hover:border-mediterranean-200/80 active:scale-[0.995]",
+          "cursor-pointer hover:shadow-md hover:border-mediterranean-300/90 active:scale-[0.99] active:bg-slate-50/50",
         className
       )}
       {...props}
@@ -47,17 +47,17 @@ export function CardHeader({
 }: CardHeaderProps) {
   if (children) {
     return (
-      <div className={cn("flex flex-col gap-1 mb-4", className)}>
+      <div className={cn("flex flex-col gap-1 mb-3.5", className)}>
         {children}
       </div>
     );
   }
 
   return (
-    <div className={cn("mb-4 flex items-start justify-between gap-4", className)}>
+    <div className={cn("mb-3.5 flex items-start justify-between gap-3", className)}>
       <div>
-        {title && <h3 className="text-base font-semibold text-slate-900 tracking-tight">{title}</h3>}
-        {subtitle && <p className="mt-0.5 text-xs text-slate-500">{subtitle}</p>}
+        {title && <h3 className="text-base font-extrabold text-slate-900 tracking-tight">{title}</h3>}
+        {subtitle && <p className="mt-0.5 text-xs text-slate-500 font-medium">{subtitle}</p>}
       </div>
       {action && <div className="shrink-0">{action}</div>}
     </div>
@@ -72,7 +72,7 @@ export function CardTitle({
   className?: string;
 }) {
   return (
-    <h3 className={cn("text-base font-semibold text-slate-900 tracking-tight", className)}>
+    <h3 className={cn("text-base font-extrabold text-slate-900 tracking-tight", className)}>
       {children}
     </h3>
   );
@@ -86,7 +86,7 @@ export function CardDescription({
   className?: string;
 }) {
   return (
-    <p className={cn("text-xs text-slate-500 leading-relaxed", className)}>
+    <p className={cn("text-xs text-slate-500 font-medium leading-relaxed", className)}>
       {children}
     </p>
   );
@@ -110,9 +110,8 @@ export function CardFooter({
   className?: string;
 }) {
   return (
-    <div className={cn("mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500", className)}>
+    <div className={cn("mt-4 pt-3 border-t border-slate-100/90 flex items-center justify-between text-xs text-slate-500 font-medium", className)}>
       {children}
     </div>
   );
 }
-

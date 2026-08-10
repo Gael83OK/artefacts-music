@@ -1,6 +1,6 @@
 /**
  * Barre de navigation inférieure
- * Pattern mobile-first, prête pour une future app native
+ * Pattern mobile-first moderne pour smartphone native
  */
 
 "use client";
@@ -18,15 +18,15 @@ interface BottomNavProps {
 export function BottomNav({ onOpenMobileMenu }: BottomNavProps) {
   const pathname = usePathname();
 
-  // Pick top items flagged for bottom tab
+  // Navigation vers les onglets principaux de bas de page
   const bottomTabs = NAVIGATION_ITEMS.filter((item) => item.isBottomTab);
 
   return (
     <nav
-      className="md:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-slate-200/90 bg-white/95 backdrop-blur-2xl safe-bottom shadow-lg"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-slate-200/90 bg-white/90 backdrop-blur-2xl safe-bottom shadow-[0_-4px_20px_0_rgba(15,23,42,0.06)]"
       aria-label="Navigation mobile"
     >
-      <div className="flex items-center justify-around px-1 py-1">
+      <div className="flex items-center justify-around px-2 py-1.5">
         {bottomTabs.map((item) => {
           const isActive =
             item.href === "/"
@@ -40,9 +40,9 @@ export function BottomNav({ onOpenMobileMenu }: BottomNavProps) {
               key={item.id}
               href={item.href}
               className={cn(
-                "flex flex-col items-center justify-center gap-0.5 rounded-2xl px-2.5 py-1.5 transition-all duration-200 relative min-h-[48px] flex-1",
+                "flex flex-col items-center justify-center gap-0.5 rounded-2xl px-2 py-1.5 transition-all duration-200 relative min-h-[50px] flex-1 select-none",
                 isActive
-                  ? "text-violet-600 font-bold bg-violet-50/70"
+                  ? "text-violet-600 font-extrabold bg-violet-50/80 shadow-xs"
                   : "text-slate-400 hover:text-slate-600 active:scale-95"
               )}
               aria-current={isActive ? "page" : undefined}
@@ -54,22 +54,22 @@ export function BottomNav({ onOpenMobileMenu }: BottomNavProps) {
                 )}
                 strokeWidth={isActive ? 2.5 : 2}
               />
-              <span className="text-[10px] tracking-tight font-medium">{item.label}</span>
+              <span className="text-[10px] tracking-tight font-extrabold">{item.label}</span>
 
               {isActive && (
-                <span className="absolute top-0 h-1 w-6 bg-gradient-to-r from-violet-600 to-mediterranean-500 rounded-full shadow-sm" />
+                <span className="absolute top-0.5 h-1 w-5 bg-gradient-to-r from-violet-600 to-mediterranean-500 rounded-full shadow-xs animate-fade-in" />
               )}
             </Link>
           );
         })}
 
-        {/* 5th item: Menu drawer trigger */}
+        {/* 5ème déclencheur : Menu mobile latéral */}
         <button
           onClick={onOpenMobileMenu}
-          className="flex flex-col items-center justify-center gap-0.5 rounded-2xl px-2.5 py-1.5 text-slate-400 hover:text-slate-600 active:scale-95 transition-all min-h-[48px] flex-1"
+          className="flex flex-col items-center justify-center gap-0.5 rounded-2xl px-2 py-1.5 text-slate-400 hover:text-slate-600 active:scale-95 transition-all min-h-[50px] flex-1 select-none"
         >
           <Menu className="h-5 w-5" />
-          <span className="text-[10px] tracking-tight font-medium">Plus</span>
+          <span className="text-[10px] tracking-tight font-extrabold">Plus</span>
         </button>
       </div>
     </nav>

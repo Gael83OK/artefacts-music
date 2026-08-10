@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Search, Bell, Menu, LogOut } from "lucide-react";
@@ -23,10 +22,7 @@ export function Header({ onOpenMobileMenu }: HeaderProps) {
   const unreadCount = user ? notificationService.getUnreadCount(user.id) : 0;
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-
-
-
-  // Find current item based on path
+  // Titre basé sur la route
   const currentItem = NAVIGATION_ITEMS.find((item) =>
     item.href === "/" ? pathname === "/" : pathname.startsWith(item.href)
   );
@@ -40,36 +36,36 @@ export function Header({ onOpenMobileMenu }: HeaderProps) {
   });
 
   return (
-    <header className="sticky top-0 z-20 glass-nav px-4 sm:px-6 py-3.5 flex items-center justify-between">
-      {/* Mobile left: Menu trigger & Logo */}
+    <header className="sticky top-0 z-20 glass-nav px-4 sm:px-6 py-3 flex items-center justify-between transition-all duration-200">
+      {/* Mobile gauche: Menu trigger & Logo */}
       <div className="flex items-center gap-3 md:hidden">
         <button
           onClick={onOpenMobileMenu}
-          className="p-2 -ml-1 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-colors"
+          className="p-2 -ml-1 text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 active:scale-95 rounded-xl transition-all"
           aria-label="Ouvrir le menu"
         >
           <Menu className="h-5 w-5" />
         </button>
-        <Link href="/">
+        <Link href="/" className="active:scale-95 transition-transform">
           <BrandLogo size="sm" priority />
         </Link>
       </div>
 
-      {/* Desktop left: Page title & current date */}
+      {/* Desktop gauche: Titre de la page et date */}
       <div className="hidden md:flex items-center gap-3">
-        <h1 className="text-base font-semibold text-slate-800 tracking-tight">
+        <h1 className="text-base font-extrabold text-slate-900 tracking-tight">
           {title}
         </h1>
         <span className="text-slate-300">|</span>
-        <span className="text-xs text-slate-500 capitalize">{todayFormatted}</span>
+        <span className="text-xs text-slate-500 font-medium capitalize">{todayFormatted}</span>
       </div>
 
-      {/* Right actions: Search, SpaceSwitcher, Notifications & User profile */}
-      <div className="flex items-center gap-2.5">
+      {/* Actions droite: Recherche, Switcher d'espace, Notifications & Profil */}
+      <div className="flex items-center gap-2">
         {/* Déclencheur de la recherche globale */}
         <button
           onClick={() => setIsSearchOpen(true)}
-          className="flex items-center gap-2 px-3 py-1.5 bg-slate-100/90 hover:bg-slate-200/90 text-slate-600 hover:text-slate-900 rounded-full transition-colors text-xs font-medium focus-visible:ring-2 focus-visible:ring-mediterranean-500"
+          className="flex items-center gap-2 px-3 py-1.5 bg-slate-100/90 hover:bg-slate-200/90 active:scale-95 text-slate-600 hover:text-slate-900 rounded-full transition-all text-xs font-semibold focus-visible:ring-2 focus-visible:ring-mediterranean-500"
           title="Rechercher dans Artefacts Music..."
           aria-label="Rechercher dans Artefacts Music"
         >
@@ -81,23 +77,23 @@ export function Header({ onOpenMobileMenu }: HeaderProps) {
 
         <Link
           href="/notifications"
-          className="relative p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-colors focus-visible:ring-2 focus-visible:ring-mediterranean-500"
+          className="relative p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 active:scale-95 rounded-xl transition-all focus-visible:ring-2 focus-visible:ring-mediterranean-500"
           title="Notifications"
           aria-label="Consulter les notifications"
         >
           <Bell className="h-5 w-5" aria-hidden="true" />
           {unreadCount > 0 && (
-            <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center ring-2 ring-white animate-pulse">
+            <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-rose-500 text-white text-[10px] font-extrabold flex items-center justify-center ring-2 ring-white animate-pulse">
               {unreadCount}
             </span>
           )}
         </Link>
 
         {isAuthenticated && user ? (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <Link
               href="/profil"
-              className="flex items-center gap-2 pl-2 pr-3 py-1 bg-slate-100/80 hover:bg-slate-200/80 rounded-full transition-colors focus-visible:ring-2 focus-visible:ring-mediterranean-500"
+              className="flex items-center gap-2 pl-1.5 pr-2.5 py-1 bg-slate-100/80 hover:bg-slate-200/80 active:scale-95 rounded-full transition-all focus-visible:ring-2 focus-visible:ring-mediterranean-500"
               aria-label={`Accéder au profil de ${user.prenom} ${user.nom}`}
             >
               <Avatar
@@ -105,14 +101,14 @@ export function Header({ onOpenMobileMenu }: HeaderProps) {
                 size="sm"
                 status="online"
               />
-              <span className="text-xs font-semibold text-slate-800 hidden sm:inline">
+              <span className="text-xs font-extrabold text-slate-800 hidden sm:inline">
                 {user.prenom}
               </span>
             </Link>
 
             <button
               onClick={logout}
-              className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-colors focus-visible:ring-2 focus-visible:ring-rose-500"
+              className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 active:scale-95 rounded-xl transition-all focus-visible:ring-2 focus-visible:ring-rose-500"
               title="Se déconnecter"
               aria-label="Se déconnecter"
             >
@@ -122,7 +118,7 @@ export function Header({ onOpenMobileMenu }: HeaderProps) {
         ) : (
           <Link
             href="/"
-            className="text-xs font-semibold text-mediterranean-600 hover:text-mediterranean-700 bg-mediterranean-50 px-3 py-1.5 rounded-full transition-colors"
+            className="text-xs font-extrabold text-mediterranean-600 hover:text-mediterranean-700 bg-mediterranean-50 px-3 py-1.5 rounded-full transition-colors"
           >
             Se connecter
           </Link>
@@ -137,5 +133,3 @@ export function Header({ onOpenMobileMenu }: HeaderProps) {
     </header>
   );
 }
-
-

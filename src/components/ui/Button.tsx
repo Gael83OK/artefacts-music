@@ -20,29 +20,29 @@ export function Button({
 }: ButtonProps) {
   const variantClasses = {
     mediterranean:
-      "bg-mediterranean-500 text-white hover:bg-mediterranean-600 active:bg-mediterranean-700 shadow-sm",
+      "bg-gradient-to-r from-mediterranean-500 to-mediterranean-600 text-white hover:from-mediterranean-600 hover:to-mediterranean-700 active:from-mediterranean-700 active:to-mediterranean-800 shadow-sm shadow-mediterranean-500/20",
     violet:
-      "bg-violet-500 text-white hover:bg-violet-600 active:bg-violet-700 shadow-sm",
+      "bg-gradient-to-r from-violet-500 to-violet-600 text-white hover:from-violet-600 hover:to-violet-700 active:from-violet-700 active:to-violet-800 shadow-sm shadow-violet-500/20",
     rose:
-      "bg-rose-500 text-white hover:bg-rose-600 active:bg-rose-700 shadow-sm",
+      "bg-gradient-to-r from-rose-500 to-rose-600 text-white hover:from-rose-600 hover:to-rose-700 active:from-rose-700 active:to-rose-800 shadow-sm shadow-rose-500/20",
     secondary:
-      "bg-slate-100 text-slate-900 hover:bg-slate-200 active:bg-slate-300",
+      "bg-slate-100 text-slate-800 hover:bg-slate-200/80 active:bg-slate-300",
     outline:
-      "border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 active:bg-slate-100",
+      "border border-slate-200/90 bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-300 active:bg-slate-100 shadow-sm",
     ghost:
-      "bg-transparent text-slate-700 hover:bg-slate-100 active:bg-slate-200",
+      "bg-transparent text-slate-700 hover:bg-slate-100/80 active:bg-slate-200",
   };
 
   const sizeClasses = {
-    sm: "h-8 px-3 text-xs gap-1.5 rounded-lg font-medium",
-    md: "h-10 px-4 text-sm gap-2 rounded-xl font-medium",
-    lg: "h-12 px-6 text-base gap-2.5 rounded-2xl font-semibold",
+    sm: "h-8 min-h-[36px] px-3 text-xs gap-1.5 rounded-xl font-bold",
+    md: "h-10 min-h-[44px] px-4 text-xs sm:text-sm gap-2 rounded-xl font-extrabold tracking-tight",
+    lg: "h-12 min-h-[48px] px-6 text-sm sm:text-base gap-2.5 rounded-2xl font-black tracking-tight",
   };
 
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center transition-all duration-150 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mediterranean-500/40",
+        "inline-flex items-center justify-center transition-all duration-150 active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mediterranean-500/40 select-none",
         variantClasses[variant],
         sizeClasses[size],
         className
