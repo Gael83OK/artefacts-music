@@ -88,9 +88,10 @@ export function DashboardInteractiveGrid({
       badge: threeNextDates.length > 0 ? `${threeNextDates.length}` : null,
       badgeVariant: "mediterranean" as const,
       icon: Calendar,
-      gradient: "from-mediterranean-500 via-mediterranean-600 to-sky-600",
-      bgLight: "bg-mediterranean-50/70 border-mediterranean-200/90",
-      textColor: "text-mediterranean-700",
+      gradient: "from-sky-400 via-sky-500 to-indigo-600",
+      bgLight: "bg-sky-50/80 border-sky-200/90",
+      activeRing: "ring-sky-400/50 border-sky-300",
+      textColor: "text-sky-700",
     },
     {
       id: "chat" as CategoryId,
@@ -99,9 +100,10 @@ export function DashboardInteractiveGrid({
       badge: nextChatUnreadCount > 0 ? `${nextChatUnreadCount} non lu${nextChatUnreadCount > 1 ? "s" : ""}` : null,
       badgeVariant: "rose" as const,
       icon: MessageSquare,
-      gradient: "from-violet-500 via-violet-600 to-indigo-600",
-      bgLight: "bg-violet-50/70 border-violet-200/90",
-      textColor: "text-violet-700",
+      gradient: "from-pink-500 via-purple-500 to-indigo-600",
+      bgLight: "bg-pink-50/80 border-pink-200/90",
+      activeRing: "ring-pink-400/50 border-pink-300",
+      textColor: "text-pink-700",
     },
     {
       id: "notifications" as CategoryId,
@@ -110,8 +112,9 @@ export function DashboardInteractiveGrid({
       badge: unreadNotifCount > 0 ? `${unreadNotifCount}` : null,
       badgeVariant: "rose" as const,
       icon: Bell,
-      gradient: "from-rose-500 via-rose-600 to-pink-600",
-      bgLight: "bg-rose-50/70 border-rose-200/90",
+      gradient: "from-rose-500 via-pink-600 to-purple-600",
+      bgLight: "bg-rose-50/80 border-rose-200/90",
+      activeRing: "ring-rose-400/50 border-rose-300",
       textColor: "text-rose-700",
     },
     {
@@ -121,8 +124,9 @@ export function DashboardInteractiveGrid({
       badge: null,
       badgeVariant: "violet" as const,
       icon: Music,
-      gradient: "from-purple-500 via-purple-600 to-violet-700",
-      bgLight: "bg-purple-50/70 border-purple-200/90",
+      gradient: "from-purple-500 via-indigo-600 to-sky-500",
+      bgLight: "bg-purple-50/80 border-purple-200/90",
+      activeRing: "ring-purple-400/50 border-purple-300",
       textColor: "text-purple-700",
     },
     {
@@ -132,9 +136,10 @@ export function DashboardInteractiveGrid({
       badge: null,
       badgeVariant: "mediterranean" as const,
       icon: FileText,
-      gradient: "from-blue-600 via-indigo-600 to-slate-700",
-      bgLight: "bg-blue-50/70 border-blue-200/90",
-      textColor: "text-blue-700",
+      gradient: "from-indigo-600 via-sky-500 to-cyan-400",
+      bgLight: "bg-indigo-50/80 border-indigo-200/90",
+      activeRing: "ring-indigo-400/50 border-indigo-300",
+      textColor: "text-indigo-700",
     },
     {
       id: "materiel" as CategoryId,
@@ -143,8 +148,9 @@ export function DashboardInteractiveGrid({
       badge: null,
       badgeVariant: "amber" as const,
       icon: Package,
-      gradient: "from-amber-500 via-amber-600 to-orange-600",
-      bgLight: "bg-amber-50/70 border-amber-200/90",
+      gradient: "from-amber-400 via-pink-500 to-purple-500",
+      bgLight: "bg-amber-50/80 border-amber-200/90",
+      activeRing: "ring-amber-400/50 border-amber-300",
       textColor: "text-amber-700",
     },
     {
@@ -154,8 +160,9 @@ export function DashboardInteractiveGrid({
       badge: null,
       badgeVariant: "emerald" as const,
       icon: Users,
-      gradient: "from-emerald-500 via-emerald-600 to-teal-600",
-      bgLight: "bg-emerald-50/70 border-emerald-200/90",
+      gradient: "from-emerald-400 via-teal-500 to-sky-500",
+      bgLight: "bg-emerald-50/80 border-emerald-200/90",
+      activeRing: "ring-emerald-400/50 border-emerald-300",
       textColor: "text-emerald-700",
     },
     {
@@ -165,8 +172,9 @@ export function DashboardInteractiveGrid({
       badge: null,
       badgeVariant: "slate" as const,
       icon: CalendarOff,
-      gradient: "from-slate-600 via-slate-700 to-slate-800",
-      bgLight: "bg-slate-100/80 border-slate-200",
+      gradient: "from-slate-600 via-indigo-600 to-purple-700",
+      bgLight: "bg-slate-100/90 border-slate-200",
+      activeRing: "ring-slate-400/50 border-slate-300",
       textColor: "text-slate-700",
     },
   ];
@@ -175,16 +183,17 @@ export function DashboardInteractiveGrid({
     <div className="space-y-4">
       {/* Titre de section avec hiérarchie claire */}
       <div className="flex items-center justify-between px-1">
-        <span className="text-[11px] font-black text-slate-400 uppercase tracking-widest">
+        <span className="text-[11px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+          <span className="h-2 w-2 rounded-full bg-gradient-to-r from-sky-400 to-pink-500 animate-pulse" />
           Explorer votre espace
         </span>
         <span className="text-[10px] text-slate-400 font-bold hidden sm:inline">
-          Touchez une carte pour révéler les détails
+          Touchez une bulle pour ouvrir les détails
         </span>
       </div>
 
-      {/* Grille tactile 2 colonnes */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+      {/* Grille tactile 2 colonnes style App iOS */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {categories.map((cat) => {
           const isActive = activeCategory === cat.id;
           const Icon = cat.icon;
@@ -193,36 +202,39 @@ export function DashboardInteractiveGrid({
             <button
               key={cat.id}
               onClick={() => toggleCategory(cat.id)}
-              className={`p-3.5 rounded-2xl border text-left transition-all duration-200 flex flex-col justify-between min-h-[96px] relative overflow-hidden group select-none ${
+              className={`p-4 rounded-3xl border text-left transition-all duration-300 flex flex-col justify-between min-h-[105px] relative overflow-hidden group select-none ${
                 isActive
-                  ? `${cat.bgLight} ring-2 ring-violet-500/40 shadow-md scale-[1.01]`
-                  : "bg-white border-slate-200/80 hover:border-slate-300/90 hover:bg-slate-50/60 active:scale-95 shadow-sm"
+                  ? `${cat.bgLight} ring-2 ${cat.activeRing} shadow-apple-float scale-[1.02]`
+                  : "bg-white/80 backdrop-blur-xl border-slate-200/70 hover:border-slate-300/90 hover:bg-white active:scale-95 shadow-apple-card hover:shadow-card-hover"
               }`}
             >
+              {/* Reflet lumineux en survol */}
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-white/40 to-transparent rounded-full blur-xl pointer-events-none group-hover:scale-150 transition-transform duration-500" />
+
               {/* Entête de la tuile */}
-              <div className="flex items-start justify-between gap-1 w-full">
+              <div className="flex items-start justify-between gap-1 w-full relative z-10">
                 <div
-                  className={`h-9 w-9 rounded-xl bg-gradient-to-br ${cat.gradient} text-white flex items-center justify-center shadow-sm shrink-0 transition-transform group-hover:scale-105`}
+                  className={`h-10 w-10 rounded-2xl bg-gradient-to-br ${cat.gradient} text-white flex items-center justify-center shadow-md shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className="h-5 w-5 drop-shadow-sm" />
                 </div>
 
                 {cat.badge && (
-                  <Badge variant={cat.badgeVariant} size="sm" className="text-[10px] px-1.5 py-0.5 font-black">
+                  <Badge variant={cat.badgeVariant} size="sm" pulse={isActive} className="text-[10px] px-2 py-0.5 font-black shadow-sm">
                     {cat.badge}
                   </Badge>
                 )}
               </div>
 
               {/* Contenu textuel */}
-              <div className="mt-2.5 min-w-0">
+              <div className="mt-3 min-w-0 relative z-10">
                 <div className="flex items-center justify-between gap-1">
-                  <h4 className="text-xs font-black text-slate-900 truncate">
+                  <h4 className="text-xs font-black text-slate-900 truncate tracking-tight">
                     {cat.title}
                   </h4>
                   <ChevronDown
-                    className={`h-3.5 w-3.5 text-slate-400 transition-transform duration-300 shrink-0 ${
-                      isActive ? "rotate-180 text-violet-600 font-black" : "group-hover:text-slate-600"
+                    className={`h-4 w-4 text-slate-400 transition-transform duration-300 shrink-0 ${
+                      isActive ? "rotate-180 text-purple-600 font-black" : "group-hover:text-slate-600"
                     }`}
                   />
                 </div>
@@ -238,21 +250,24 @@ export function DashboardInteractiveGrid({
       {/* Panneau de divulgation progressive (In-Place Expanded Detail View) */}
       {activeCategory && (
         <div className="animate-slide-up transition-all duration-300">
-          <Card className="p-4 sm:p-5 border-violet-200/80 bg-white shadow-xl space-y-4 rounded-3xl relative">
+          <Card variant="glass" className="p-5 sm:p-6 border-slate-200/80 bg-white/90 backdrop-blur-2xl shadow-apple-float space-y-4 rounded-3xl relative overflow-hidden">
+            {/* Ligne dégradée subtile en haut */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-400 via-pink-500 to-indigo-600" />
+
             {/* Header du panneau déplié */}
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <div className="flex items-center gap-2">
-                <span className="text-[11px] font-black uppercase tracking-wider text-violet-700 bg-violet-50 px-2.5 py-1 rounded-xl border border-violet-100/90">
+            <div className="flex items-center justify-between border-b border-slate-100/90 pb-3.5">
+              <div className="flex items-center gap-2.5">
+                <span className="text-xs font-black uppercase tracking-wider text-purple-700 bg-gradient-to-r from-sky-50 via-pink-50 to-purple-50 px-3 py-1 rounded-2xl border border-purple-200/60 shadow-sm">
                   {categories.find((c) => c.id === activeCategory)?.title}
                 </span>
-                <span className="text-xs text-slate-500 font-medium hidden sm:inline">
-                  Accès et détails
+                <span className="text-xs text-slate-400 font-semibold hidden sm:inline">
+                  Accès instantané & gestion
                 </span>
               </div>
 
               <button
                 onClick={() => setActiveCategory(null)}
-                className="text-[11px] font-extrabold text-slate-500 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3 py-1 rounded-full transition-all active:scale-95"
+                className="text-xs font-extrabold text-slate-500 hover:text-slate-900 bg-slate-100/90 hover:bg-slate-200/90 px-3.5 py-1.5 rounded-full transition-all active:scale-95 shadow-sm"
               >
                 Fermer ✕
               </button>
@@ -268,7 +283,7 @@ export function DashboardInteractiveGrid({
                 </p>
 
                 {threeNextDates.length === 0 ? (
-                  <div className="p-4 text-center text-xs text-slate-500 bg-slate-50 rounded-2xl border border-dashed font-medium">
+                  <div className="p-4 text-center text-xs text-slate-500 bg-slate-50/70 rounded-2xl border border-slate-200/70 font-semibold">
                     Aucun événement à venir pour le moment.
                   </div>
                 ) : (
@@ -282,13 +297,13 @@ export function DashboardInteractiveGrid({
 
                       return (
                         <Link key={evt.id} href={evt.targetUrl} className="block">
-                          <Card interactive className="p-3 flex items-center justify-between gap-3 text-xs border-slate-200/90 hover:border-mediterranean-300">
+                          <Card interactive className="p-3.5 flex items-center justify-between gap-3 text-xs border-slate-200/80 bg-white/80 backdrop-blur-md rounded-2xl hover:border-sky-300 shadow-sm">
                             <div className="flex items-center gap-3 min-w-0">
-                              <div className="shrink-0 text-center bg-slate-100 px-2.5 py-1 rounded-xl">
+                              <div className="shrink-0 text-center bg-gradient-to-br from-sky-50 to-indigo-50 border border-sky-100 px-3 py-1.5 rounded-2xl">
                                 <span className="text-[11px] font-black text-slate-900 capitalize block">
                                   {formattedDate}
                                 </span>
-                                <span className="text-[10px] text-slate-500 font-medium">
+                                <span className="text-[10px] text-sky-600 font-bold">
                                   {evt.time}
                                 </span>
                               </div>
@@ -321,9 +336,9 @@ export function DashboardInteractiveGrid({
 
                 <div className="pt-1 flex justify-end">
                   <Link href="/calendrier">
-                    <Button variant="outline" size="sm" className="text-xs font-extrabold rounded-xl gap-1.5">
+                    <Button variant="outline" size="sm" className="text-xs font-black rounded-2xl gap-1.5">
                       <span>Voir tout le calendrier</span>
-                      <ArrowRight className="h-3.5 w-3.5" />
+                      <ArrowRight className="h-3.5 w-3.5 text-sky-600" />
                     </Button>
                   </Link>
                 </div>
@@ -334,10 +349,10 @@ export function DashboardInteractiveGrid({
             {activeCategory === "chat" && (
               <div className="space-y-3">
                 {nextPrestation ? (
-                  <Card className="p-4 border-violet-200/90 bg-gradient-to-r from-violet-50/60 via-white to-white space-y-3">
+                  <Card className="p-4 border-pink-200/90 bg-gradient-to-r from-pink-50/70 via-purple-50/40 to-white space-y-3 rounded-2xl">
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 bg-gradient-to-br from-violet-500 to-indigo-600 text-white rounded-2xl flex items-center justify-center shrink-0 shadow-sm">
+                        <div className="h-10 w-10 bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 text-white rounded-2xl flex items-center justify-center shrink-0 shadow-md">
                           <MessageSquare className="h-5 w-5" />
                         </div>
                         <div>
@@ -351,19 +366,20 @@ export function DashboardInteractiveGrid({
                       </div>
 
                       {nextChatUnreadCount > 0 && (
-                        <Badge variant="rose" size="sm">
+                        <Badge variant="rose" size="sm" pulse>
                           {nextChatUnreadCount} nouveau{nextChatUnreadCount > 1 ? "x" : ""}
                         </Badge>
                       )}
                     </div>
 
-                    <div className="pt-2 border-t border-violet-100 flex items-center justify-between gap-2">
-                      <span className="text-[11px] text-violet-700 font-semibold">
-                        💬 Fil de conversation instantané
+                    <div className="pt-2.5 border-t border-purple-100/90 flex items-center justify-between gap-2">
+                      <span className="text-[11px] text-purple-700 font-bold flex items-center gap-1.5">
+                        <span className="h-2 w-2 rounded-full bg-pink-500 animate-pulse" />
+                        Fil de conversation instantané
                       </span>
 
                       <Link href={`/evenement/${nextPrestation.id}/chat`}>
-                        <Button variant="violet" size="sm" className="text-xs font-black rounded-xl gap-1.5">
+                        <Button variant="violet" size="sm" className="text-xs font-black rounded-2xl gap-1.5">
                           <span>Ouvrir la discussion</span>
                           <ArrowRight className="h-3.5 w-3.5" />
                         </Button>
@@ -371,7 +387,7 @@ export function DashboardInteractiveGrid({
                     </div>
                   </Card>
                 ) : (
-                  <div className="p-4 text-center text-xs text-slate-500 bg-slate-50 rounded-2xl border border-dashed font-medium">
+                  <div className="p-4 text-center text-xs text-slate-500 bg-slate-50/70 rounded-2xl border border-slate-200/70 font-semibold">
                     Aucun chat actif de prestation disponible.
                   </div>
                 )}
@@ -382,14 +398,14 @@ export function DashboardInteractiveGrid({
             {activeCategory === "notifications" && (
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-600 font-medium">Dernières alertes reçues :</span>
-                  <Link href="/notifications" className="font-extrabold text-mediterranean-600 hover:underline">
+                  <span className="text-slate-600 font-semibold">Dernières alertes reçues :</span>
+                  <Link href="/notifications" className="font-extrabold text-purple-600 hover:underline">
                     Tout voir
                   </Link>
                 </div>
 
                 {recentNotifications.length === 0 ? (
-                  <div className="p-4 text-center text-xs text-slate-500 bg-slate-50 rounded-2xl border border-dashed font-medium">
+                  <div className="p-4 text-center text-xs text-slate-500 bg-slate-50/70 rounded-2xl border border-slate-200/70 font-semibold">
                     Aucune notification récente.
                   </div>
                 ) : (
@@ -398,18 +414,20 @@ export function DashboardInteractiveGrid({
                       <Link key={notif.id} href={notif.targetUrl || "/notifications"} className="block">
                         <Card
                           interactive
-                          className={`p-3 text-xs flex items-center justify-between gap-3 ${
-                            !notif.isRead ? "bg-rose-50/50 border-rose-200" : "bg-white border-slate-200"
+                          className={`p-3.5 text-xs flex items-center justify-between gap-3 rounded-2xl ${
+                            !notif.isRead ? "bg-rose-50/60 border-rose-200/90 shadow-sm" : "bg-white/80 border-slate-200/80"
                           }`}
                         >
-                          <div className="flex items-center gap-2.5 min-w-0">
-                            <Bell className="h-4 w-4 text-rose-500 shrink-0" />
+                          <div className="flex items-center gap-3 min-w-0">
+                            <div className="h-8 w-8 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center shrink-0">
+                              <Bell className="h-4 w-4" />
+                            </div>
                             <div className="min-w-0">
                               <div className="font-extrabold text-slate-900 truncate">{notif.title}</div>
                               <div className="text-[11px] text-slate-500 font-medium truncate">{notif.message}</div>
                             </div>
                           </div>
-                          <ArrowRight className="h-3.5 w-3.5 text-slate-400 shrink-0" />
+                          <ArrowRight className="h-4 w-4 text-slate-400 shrink-0" />
                         </Card>
                       </Link>
                     ))}
@@ -421,47 +439,53 @@ export function DashboardInteractiveGrid({
             {/* 4. ESPACE MUSICAL */}
             {activeCategory === "musique" && (
               <div className="space-y-3">
-                <p className="text-xs text-slate-600 font-medium">
+                <p className="text-xs text-slate-600 font-semibold">
                   Ressources musicales, partitions et fichiers audio :
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                   <Link href="/espace-musical">
-                    <div className="p-3 bg-violet-50/60 hover:bg-violet-100/70 border border-violet-200/90 rounded-2xl text-left transition-all duration-150 active:scale-95 flex items-center justify-between">
-                      <div className="flex items-center gap-2.5">
-                        <Headphones className="h-4 w-4 text-violet-600" />
+                    <div className="p-3.5 bg-gradient-to-br from-purple-50/80 to-indigo-50/80 hover:from-purple-100 hover:to-indigo-100 border border-purple-200/80 rounded-2xl text-left transition-all duration-200 active:scale-95 flex items-center justify-between shadow-sm">
+                      <div className="flex items-center gap-3">
+                        <div className="h-8 w-8 rounded-xl bg-purple-500 text-white flex items-center justify-center shrink-0 shadow-sm">
+                          <Headphones className="h-4 w-4" />
+                        </div>
                         <div>
                           <div className="font-black text-xs text-slate-900">Répertoire</div>
                           <div className="text-[10px] text-slate-500 font-medium">Morceaux & audios</div>
                         </div>
                       </div>
-                      <ArrowRight className="h-3.5 w-3.5 text-violet-500" />
+                      <ArrowRight className="h-4 w-4 text-purple-500" />
                     </div>
                   </Link>
 
                   <Link href="/espace-musical">
-                    <div className="p-3 bg-purple-50/60 hover:bg-purple-100/70 border border-purple-200/90 rounded-2xl text-left transition-all duration-150 active:scale-95 flex items-center justify-between">
-                      <div className="flex items-center gap-2.5">
-                        <FolderKanban className="h-4 w-4 text-purple-600" />
+                    <div className="p-3.5 bg-gradient-to-br from-pink-50/80 to-purple-50/80 hover:from-pink-100 hover:to-purple-100 border border-pink-200/80 rounded-2xl text-left transition-all duration-200 active:scale-95 flex items-center justify-between shadow-sm">
+                      <div className="flex items-center gap-3">
+                        <div className="h-8 w-8 rounded-xl bg-pink-500 text-white flex items-center justify-center shrink-0 shadow-sm">
+                          <FolderKanban className="h-4 w-4" />
+                        </div>
                         <div>
                           <div className="font-black text-xs text-slate-900">Setlists</div>
                           <div className="text-[10px] text-slate-500 font-medium">Ordres de passage</div>
                         </div>
                       </div>
-                      <ArrowRight className="h-3.5 w-3.5 text-purple-500" />
+                      <ArrowRight className="h-4 w-4 text-pink-500" />
                     </div>
                   </Link>
 
                   <Link href="/documents">
-                    <div className="p-3 bg-sky-50/60 hover:bg-sky-100/70 border border-sky-200/90 rounded-2xl text-left transition-all duration-150 active:scale-95 flex items-center justify-between">
-                      <div className="flex items-center gap-2.5">
-                        <FileText className="h-4 w-4 text-sky-600" />
+                    <div className="p-3.5 bg-gradient-to-br from-sky-50/80 to-cyan-50/80 hover:from-sky-100 hover:to-cyan-100 border border-sky-200/80 rounded-2xl text-left transition-all duration-200 active:scale-95 flex items-center justify-between shadow-sm">
+                      <div className="flex items-center gap-3">
+                        <div className="h-8 w-8 rounded-xl bg-sky-500 text-white flex items-center justify-center shrink-0 shadow-sm">
+                          <FileText className="h-4 w-4" />
+                        </div>
                         <div>
                           <div className="font-black text-xs text-slate-900">Partitions</div>
                           <div className="text-[10px] text-slate-500 font-medium">Fichiers PDF</div>
                         </div>
                       </div>
-                      <ArrowRight className="h-3.5 w-3.5 text-sky-500" />
+                      <ArrowRight className="h-4 w-4 text-sky-500" />
                     </div>
                   </Link>
                 </div>
@@ -471,7 +495,7 @@ export function DashboardInteractiveGrid({
             {/* 5. ADMINISTRATIF */}
             {activeCategory === "administratif" && (
               <div className="space-y-3">
-                <div className="p-3.5 bg-blue-50/60 border border-blue-200/90 rounded-2xl flex items-center justify-between gap-3 text-xs">
+                <div className="p-4 bg-gradient-to-r from-indigo-50/80 via-sky-50/60 to-white border border-indigo-200/80 rounded-2xl flex items-center justify-between gap-3 text-xs shadow-sm">
                   <div>
                     <h5 className="font-black text-slate-900">Gestion administrative & Paie</h5>
                     <p className="text-[11px] text-slate-500 font-medium mt-0.5">
@@ -479,7 +503,7 @@ export function DashboardInteractiveGrid({
                     </p>
                   </div>
                   <Link href="/administratif">
-                    <Button variant="mediterranean" size="sm" className="text-xs font-black rounded-xl shrink-0">
+                    <Button variant="mediterranean" size="sm" className="text-xs font-black rounded-2xl shrink-0">
                       Ouvrir
                     </Button>
                   </Link>
@@ -490,7 +514,7 @@ export function DashboardInteractiveGrid({
             {/* 6. MATÉRIEL */}
             {activeCategory === "materiel" && (
               <div className="space-y-3">
-                <div className="p-3.5 bg-amber-50/60 border border-amber-200/90 rounded-2xl flex items-center justify-between gap-3 text-xs">
+                <div className="p-4 bg-gradient-to-r from-amber-50/80 via-pink-50/60 to-white border border-amber-200/80 rounded-2xl flex items-center justify-between gap-3 text-xs shadow-sm">
                   <div>
                     <h5 className="font-black text-slate-900">Gestion du matériel & logistique</h5>
                     <p className="text-[11px] text-slate-500 font-medium mt-0.5">
@@ -498,7 +522,7 @@ export function DashboardInteractiveGrid({
                     </p>
                   </div>
                   <Link href="/materiel">
-                    <Button variant="outline" size="sm" className="text-xs font-black rounded-xl shrink-0 bg-white">
+                    <Button variant="outline" size="sm" className="text-xs font-black rounded-2xl shrink-0 bg-white">
                       Voir le matériel
                     </Button>
                   </Link>
@@ -509,7 +533,7 @@ export function DashboardInteractiveGrid({
             {/* 7. ANNUAIRE */}
             {activeCategory === "annuaire" && (
               <div className="space-y-3">
-                <div className="p-3.5 bg-emerald-50/60 border border-emerald-200/90 rounded-2xl flex items-center justify-between gap-3 text-xs">
+                <div className="p-4 bg-gradient-to-r from-emerald-50/80 via-teal-50/60 to-white border border-emerald-200/80 rounded-2xl flex items-center justify-between gap-3 text-xs shadow-sm">
                   <div>
                     <h5 className="font-black text-slate-900">Annuaire de l&apos;équipe</h5>
                     <p className="text-[11px] text-slate-500 font-medium mt-0.5">
@@ -517,7 +541,7 @@ export function DashboardInteractiveGrid({
                     </p>
                   </div>
                   <Link href="/annuaire">
-                    <Button variant="outline" size="sm" className="text-xs font-black rounded-xl shrink-0 bg-white border-emerald-300 text-emerald-700">
+                    <Button variant="outline" size="sm" className="text-xs font-black rounded-2xl shrink-0 bg-white border-emerald-300 text-emerald-700">
                       Annuaire
                     </Button>
                   </Link>
@@ -528,7 +552,7 @@ export function DashboardInteractiveGrid({
             {/* 8. INDISPONIBILITÉS */}
             {activeCategory === "indisponibilites" && (
               <div className="space-y-3">
-                <div className="p-3.5 bg-slate-50 border border-slate-200/90 rounded-2xl flex items-center justify-between gap-3 text-xs">
+                <div className="p-4 bg-gradient-to-r from-slate-50/90 via-indigo-50/40 to-white border border-slate-200/90 rounded-2xl flex items-center justify-between gap-3 text-xs shadow-sm">
                   <div>
                     <h5 className="font-black text-slate-900">Mes indisponibilités</h5>
                     <p className="text-[11px] text-slate-500 font-medium mt-0.5">
@@ -536,7 +560,7 @@ export function DashboardInteractiveGrid({
                     </p>
                   </div>
                   <Link href="/indisponibilites">
-                    <Button variant="outline" size="sm" className="text-xs font-black rounded-xl shrink-0 bg-white">
+                    <Button variant="outline" size="sm" className="text-xs font-black rounded-2xl shrink-0 bg-white">
                       Saisir
                     </Button>
                   </Link>

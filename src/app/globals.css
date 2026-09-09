@@ -56,12 +56,28 @@
     @apply bg-white/85 backdrop-blur-md border border-slate-200/80 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-mediterranean-300/80 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.995];
   }
 
+  .glass-pill {
+    @apply bg-white/80 backdrop-blur-xl border border-white/80 shadow-apple-card transition-all duration-200 hover:bg-white/95 active:scale-[0.98];
+  }
+
+  .divider-gradient {
+    @apply h-[1px] w-full bg-gradient-to-r from-transparent via-slate-200/80 to-transparent border-none my-0;
+  }
+
+  .divider-gradient-artefacts {
+    @apply h-[1px] w-full bg-gradient-to-r from-transparent via-sky-300/50 via-purple-300/50 to-transparent border-none my-0;
+  }
+
   .glass-nav {
     @apply bg-white/80 backdrop-blur-xl border-b border-slate-200/60 shadow-sm;
   }
 
   .text-gradient-mediterranean {
     @apply bg-gradient-to-r from-mediterranean-600 via-mediterranean-500 to-violet-600 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-artefacts {
+    @apply bg-gradient-to-r from-sky-500 via-purple-600 to-indigo-600 bg-clip-text text-transparent;
   }
 
   .text-gradient-stage {
