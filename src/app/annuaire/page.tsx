@@ -112,16 +112,28 @@ export default function AnnuairePage() {
       </div>
 
       {/* Barre de Recherche Instantanée & Filtres par Rôle */}
-      <div className="space-y-3 bg-slate-100/70 p-3.5 rounded-2xl border border-slate-200/80">
+      <div
+        className="space-y-3 p-3.5 rounded-2xl"
+        style={{
+          background: "var(--bg-elevated)",
+          border: "1px solid var(--border-medium)",
+        }}
+      >
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
           {/* Onglets Filtres par Rôle */}
-          <div className="flex flex-wrap items-center gap-1 bg-white p-1 rounded-xl border border-slate-200 w-full sm:w-auto">
+          <div
+            className="flex flex-wrap items-center gap-1 p-1 rounded-xl w-full sm:w-auto"
+            style={{
+              background: "var(--bg-surface)",
+              border: "1px solid var(--border-subtle)",
+            }}
+          >
             <button
               onClick={() => setRoleFilter("all")}
               className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
                 roleFilter === "all"
-                  ? "bg-mediterranean-600 text-white shadow-sm font-bold"
-                  : "text-slate-600 hover:text-slate-900"
+                  ? "bg-violet-600 text-white shadow-sm font-bold"
+                  : "text-slate-300 hover:text-white"
               }`}
             >
               Tous ({members.length})
@@ -130,8 +142,8 @@ export default function AnnuairePage() {
               onClick={() => setRoleFilter("musician")}
               className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
                 roleFilter === "musician"
-                  ? "bg-mediterranean-600 text-white shadow-sm font-bold"
-                  : "text-slate-600 hover:text-slate-900"
+                  ? "bg-violet-600 text-white shadow-sm font-bold"
+                  : "text-slate-300 hover:text-white"
               }`}
             >
               Musiciens
@@ -140,8 +152,8 @@ export default function AnnuairePage() {
               onClick={() => setRoleFilter("production")}
               className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
                 roleFilter === "production"
-                  ? "bg-mediterranean-600 text-white shadow-sm font-bold"
-                  : "text-slate-600 hover:text-slate-900"
+                  ? "bg-violet-600 text-white shadow-sm font-bold"
+                  : "text-slate-300 hover:text-white"
               }`}
             >
               Production
@@ -150,8 +162,8 @@ export default function AnnuairePage() {
               onClick={() => setRoleFilter("hybrid_production")}
               className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
                 roleFilter === "hybrid_production"
-                  ? "bg-mediterranean-600 text-white shadow-sm font-bold"
-                  : "text-slate-600 hover:text-slate-900"
+                  ? "bg-violet-600 text-white shadow-sm font-bold"
+                  : "text-slate-300 hover:text-white"
               }`}
             >
               Hybrides
@@ -160,8 +172,8 @@ export default function AnnuairePage() {
               onClick={() => setRoleFilter("super_admin")}
               className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
                 roleFilter === "super_admin"
-                  ? "bg-mediterranean-600 text-white shadow-sm font-bold"
-                  : "text-slate-600 hover:text-slate-900"
+                  ? "bg-violet-600 text-white shadow-sm font-bold"
+                  : "text-slate-300 hover:text-white"
               }`}
             >
               Super Admin
@@ -177,7 +189,12 @@ export default function AnnuairePage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Rechercher par prénom, nom, rôle, ville ou instrument..."
-            className="w-full h-9 pl-9 pr-3 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-mediterranean-500/30 font-medium"
+            className="w-full h-9 pl-9 pr-3 text-xs rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500/30 font-medium"
+            style={{
+              background: "var(--bg-surface)",
+              color: "var(--text-primary)",
+              border: "1px solid var(--border-medium)",
+            }}
           />
         </div>
       </div>

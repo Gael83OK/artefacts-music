@@ -107,14 +107,26 @@ export default function RepetitionsPage() {
       />
 
       {/* Barre de sélection des Onglets Principaux (1. Calendrier répétitions, 2. Avancée des morceaux) */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-slate-100/80 p-2.5 rounded-2xl border border-slate-200/80">
-        <div className="flex items-center gap-1 bg-white p-1 rounded-xl border border-slate-200 w-full sm:w-auto">
+      <div
+        className="flex flex-col sm:flex-row items-center justify-between gap-4 p-2.5 rounded-2xl"
+        style={{
+          background: "var(--bg-elevated)",
+          border: "1px solid var(--border-medium)",
+        }}
+      >
+        <div
+          className="flex items-center gap-1 p-1 rounded-xl w-full sm:w-auto"
+          style={{
+            background: "var(--bg-surface)",
+            border: "1px solid var(--border-subtle)",
+          }}
+        >
           <button
             onClick={() => setActiveTab("schedule")}
             className={`flex-1 sm:flex-none px-4 py-2 text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-2 ${
               activeTab === "schedule"
                 ? "bg-violet-600 text-white shadow-sm"
-                : "text-slate-600 hover:text-slate-900"
+                : "text-slate-300 hover:text-white"
             }`}
           >
             <Calendar className="h-4 w-4" />
@@ -126,7 +138,7 @@ export default function RepetitionsPage() {
             className={`flex-1 sm:flex-none px-4 py-2 text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-2 ${
               activeTab === "progress"
                 ? "bg-violet-600 text-white shadow-sm"
-                : "text-slate-600 hover:text-slate-900"
+                : "text-slate-300 hover:text-white"
             }`}
           >
             <TrendingUp className="h-4 w-4" />

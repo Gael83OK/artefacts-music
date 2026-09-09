@@ -180,16 +180,28 @@ export default function DocumentsPage() {
         />
 
         {/* Barre de Recherche, Filtres de Catégories et Tri */}
-        <div className="space-y-3 bg-slate-100/70 p-3.5 rounded-2xl border border-slate-200/80">
+        <div
+          className="space-y-3 p-3.5 rounded-2xl"
+          style={{
+            background: "var(--bg-elevated)",
+            border: "1px solid var(--border-medium)",
+          }}
+        >
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             {/* Onglets Filtres Catégories */}
-            <div className="flex flex-wrap items-center gap-1 bg-white p-1 rounded-xl border border-slate-200 w-full sm:w-auto overflow-x-auto">
+            <div
+              className="flex flex-wrap items-center gap-1 p-1 rounded-xl w-full sm:w-auto overflow-x-auto"
+              style={{
+                background: "var(--bg-surface)",
+                border: "1px solid var(--border-subtle)",
+              }}
+            >
               <button
                 onClick={() => setActiveCategory("all")}
                 className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap ${
                   activeCategory === "all"
-                    ? "bg-mediterranean-600 text-white shadow-sm font-bold"
-                    : "text-slate-600 hover:text-slate-900"
+                    ? "bg-violet-600 text-white shadow-sm font-bold"
+                    : "text-slate-300 hover:text-white"
                 }`}
               >
                 Tous ({documents.length})
@@ -199,7 +211,7 @@ export default function DocumentsPage() {
                 className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap ${
                   activeCategory === "administratif"
                     ? "bg-rose-500 text-white shadow-sm font-bold"
-                    : "text-slate-600 hover:text-slate-900"
+                    : "text-slate-300 hover:text-white"
                 }`}
               >
                 Administratif
@@ -208,8 +220,8 @@ export default function DocumentsPage() {
                 onClick={() => setActiveCategory("musical")}
                 className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap ${
                   activeCategory === "musical"
-                    ? "bg-mediterranean-600 text-white shadow-sm font-bold"
-                    : "text-slate-600 hover:text-slate-900"
+                    ? "bg-violet-600 text-white shadow-sm font-bold"
+                    : "text-slate-300 hover:text-white"
                 }`}
               >
                 Musical
@@ -219,7 +231,7 @@ export default function DocumentsPage() {
                 className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap ${
                   activeCategory === "prestation"
                     ? "bg-violet-600 text-white shadow-sm font-bold"
-                    : "text-slate-600 hover:text-slate-900"
+                    : "text-slate-300 hover:text-white"
                 }`}
               >
                 Prestations
@@ -229,7 +241,7 @@ export default function DocumentsPage() {
                 className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap ${
                   activeCategory === "repetition"
                     ? "bg-amber-500 text-white shadow-sm font-bold"
-                    : "text-slate-600 hover:text-slate-900"
+                    : "text-slate-300 hover:text-white"
                 }`}
               >
                 Répétitions
@@ -239,7 +251,7 @@ export default function DocumentsPage() {
                 className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap ${
                   activeCategory === "autre"
                     ? "bg-slate-700 text-white shadow-sm font-bold"
-                    : "text-slate-600 hover:text-slate-900"
+                    : "text-slate-300 hover:text-white"
                 }`}
               >
                 Autres
@@ -252,7 +264,12 @@ export default function DocumentsPage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
-                className="h-8 px-2.5 bg-white border border-slate-200 rounded-xl text-slate-700 font-semibold focus:outline-none"
+                className="h-8 px-2.5 rounded-xl font-semibold focus:outline-none"
+                style={{
+                  background: "var(--bg-surface)",
+                  color: "var(--text-primary)",
+                  border: "1px solid var(--border-medium)",
+                }}
               >
                 <option value="recent">Plus récent</option>
                 <option value="oldest">Plus ancien</option>
@@ -269,7 +286,12 @@ export default function DocumentsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Rechercher par nom de document, catégorie, date ou élément lié..."
-              className="w-full h-9 pl-9 pr-3 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-mediterranean-500/30"
+              className="w-full h-9 pl-9 pr-3 text-xs rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500/30"
+              style={{
+                background: "var(--bg-surface)",
+                color: "var(--text-primary)",
+                border: "1px solid var(--border-medium)",
+              }}
             />
           </div>
         </div>
