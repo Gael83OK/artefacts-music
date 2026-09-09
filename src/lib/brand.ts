@@ -3,16 +3,16 @@
  * Référence centralisée pour le logo et les assets visuels
  */
 
-/** Chemin public du logo officiel détouré (dossier public/brand/) */
-export const BRAND_LOGO_PATH = "/brand/logo-artefacts-music.png" as const;
+/** Chemin public du logo officiel (dossier public/brand/) */
+export const BRAND_LOGO_PATH = "/brand/logo-artefacts-music.jpg" as const;
 
-/** Dimensions natives du fichier PNG détouré */
+/** Dimensions natives du fichier source — à respecter pour conserver les proportions */
 export const BRAND_LOGO_DIMENSIONS = {
-  width: 1200,
-  height: 919,
+  width: 1024,
+  height: 777,
 } as const;
 
-/** Ratio largeur / hauteur du logo (≈ 1.305) */
+/** Ratio largeur / hauteur du logo (≈ 1.32) */
 export const BRAND_LOGO_ASPECT_RATIO =
   BRAND_LOGO_DIMENSIONS.width / BRAND_LOGO_DIMENSIONS.height;
 

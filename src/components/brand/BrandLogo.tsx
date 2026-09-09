@@ -51,10 +51,7 @@ export function BrandLogo({
         height={height}
         priority={priority}
         /* object-contain garantit le respect des proportions sans déformation */
-        className="h-full w-full object-contain object-left transition-all duration-300 hover:scale-[1.02]"
-        style={{
-          filter: "drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 6px rgba(167, 139, 250, 0.35))",
-        }}
+        className="h-full w-full object-contain object-left"
         /* sizes aide Next.js à servir la bonne résolution */
         sizes={`(max-width: 768px) ${width}px, ${width}px`}
       />
