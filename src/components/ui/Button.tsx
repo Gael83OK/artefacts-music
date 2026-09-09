@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "mediterranean" | "violet" | "rose" | "outline" | "ghost" | "secondary" | "glass" | "white";
+  variant?: "mediterranean" | "violet" | "rose" | "outline" | "ghost" | "secondary" | "glass" | "white" | "gold";
   size?: "sm" | "md" | "lg";
   icon?: React.ReactNode;
   children?: React.ReactNode;
@@ -16,25 +16,56 @@ export function Button({
   children,
   className,
   disabled,
+  style,
   ...props
 }: ButtonProps) {
-  const variantClasses = {
-    mediterranean:
-      "bg-gradient-to-r from-mediterranean-500 to-mediterranean-600 text-white hover:from-mediterranean-600 hover:to-mediterranean-700 active:from-mediterranean-700 active:to-mediterranean-800 shadow-sm shadow-mediterranean-500/25 hover:shadow-md hover:shadow-mediterranean-500/35",
-    violet:
-      "bg-gradient-to-r from-violet-500 to-violet-600 text-white hover:from-violet-600 hover:to-violet-700 active:from-violet-700 active:to-violet-800 shadow-sm shadow-violet-500/25 hover:shadow-md hover:shadow-violet-500/35",
-    rose:
-      "bg-gradient-to-r from-rose-500 to-rose-600 text-white hover:from-rose-600 hover:to-rose-700 active:from-rose-700 active:to-rose-800 shadow-sm shadow-rose-500/25 hover:shadow-md hover:shadow-rose-500/35",
-    secondary:
-      "bg-slate-100/90 text-slate-800 hover:bg-slate-200/90 active:bg-slate-300 backdrop-blur-sm",
-    outline:
-      "border border-slate-200/90 bg-white/90 text-slate-700 hover:bg-slate-50 hover:border-slate-300 active:bg-slate-100 shadow-sm backdrop-blur-sm",
-    ghost:
-      "bg-transparent text-slate-700 hover:bg-slate-100/80 active:bg-slate-200/80",
-    glass:
-      "bg-white/20 backdrop-blur-xl border border-white/30 text-white hover:bg-white/30 active:bg-white/40 shadow-glass",
-    white:
-      "bg-white text-slate-900 hover:bg-slate-50 active:bg-slate-100 shadow-md shadow-slate-900/10 font-bold",
+  const variantStyles: Record<string, React.CSSProperties> = {
+    mediterranean: {
+      background: "linear-gradient(135deg, #818CF8, #6D5DFA)",
+      color: "#fff",
+      boxShadow: "0 4px 20px rgba(122,90,248,0.35)",
+    },
+    violet: {
+      background: "linear-gradient(135deg, #8B6DFA, #6D4EE8)",
+      color: "#fff",
+      boxShadow: "0 4px 20px rgba(139,109,250,0.4)",
+    },
+    rose: {
+      background: "linear-gradient(135deg, #F06292, #C2185B)",
+      color: "#fff",
+      boxShadow: "0 4px 20px rgba(240,98,146,0.35)",
+    },
+    gold: {
+      background: "linear-gradient(135deg, #FCD34D, #F59E0B)",
+      color: "#1A1200",
+      boxShadow: "0 4px 20px rgba(245,158,11,0.35)",
+    },
+    secondary: {
+      background: "rgba(255,255,255,0.08)",
+      color: "var(--text-secondary)",
+      border: "1px solid rgba(255,255,255,0.1)",
+    },
+    outline: {
+      background: "transparent",
+      color: "var(--text-primary)",
+      border: "1px solid rgba(255,255,255,0.12)",
+    },
+    ghost: {
+      background: "transparent",
+      color: "var(--text-secondary)",
+    },
+    glass: {
+      background: "rgba(255,255,255,0.1)",
+      backdropFilter: "blur(12px)",
+      border: "1px solid rgba(255,255,255,0.15)",
+      color: "#fff",
+    },
+    white: {
+      background: "rgba(255,255,255,0.95)",
+      color: "#0E0C1A",
+      boxShadow: "0 4px 16px rgba(0,0,0,0.3)",
+      fontWeight: 700,
+    },
   };
 
   const sizeClasses = {
@@ -46,11 +77,11 @@ export function Button({
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center transition-all duration-150 active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mediterranean-500/40 select-none",
-        variantClasses[variant],
+        "inline-flex items-center justify-center transition-all duration-150 active:scale-[0.97] disabled:opacity-40 disabled:pointer-events-none focus-visible:outline-none select-none",
         sizeClasses[size],
         className
       )}
+      style={{ ...variantStyles[variant], ...style }}
       disabled={disabled}
       {...props}
     >

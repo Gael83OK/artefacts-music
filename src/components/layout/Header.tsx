@@ -40,28 +40,28 @@ export function Header({ onOpenMobileMenu }: HeaderProps) {
         className="sticky top-0 z-20 px-4 sm:px-5 flex items-center justify-between h-14 transition-all duration-300"
         style={{
           background: scrolled
-            ? "rgba(255,255,255,0.90)"
-            : "rgba(255,255,255,0.70)",
-          backdropFilter: "blur(24px) saturate(180%)",
-          WebkitBackdropFilter: "blur(24px) saturate(180%)",
-          borderBottom: scrolled
-            ? "1px solid rgba(15,23,42,0.06)"
-            : "1px solid rgba(255,255,255,0.4)",
+            ? "rgba(14, 12, 26, 0.95)"
+            : "rgba(14, 12, 26, 0.75)",
+          backdropFilter: "blur(28px) saturate(180%)",
+          WebkitBackdropFilter: "blur(28px) saturate(180%)",
+          borderBottom: `1px solid ${scrolled ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.04)"}`,
           boxShadow: scrolled
-            ? "0 1px 0 rgba(15,23,42,0.04), 0 4px 20px rgba(15,23,42,0.05)"
+            ? "0 1px 0 rgba(255,255,255,0.03), 0 4px 24px rgba(0,0,0,0.4)"
             : "none",
         }}
       >
-        {/* Mobile: Logo Artefacts */}
+        {/* Mobile: Logo */}
         <div className="flex items-center gap-2.5 md:hidden">
           <Link href="/" className="active:scale-95 transition-transform">
             <BrandLogo size="sm" priority />
           </Link>
         </div>
 
-        {/* Desktop: Titre de la page */}
+        {/* Desktop: Titre */}
         <div className="hidden md:flex items-center gap-3">
-          <h1 className="text-sm font-bold text-slate-800 tracking-tight">{title}</h1>
+          <h1 className="text-sm font-bold tracking-tight" style={{ color: "var(--text-primary)" }}>
+            {title}
+          </h1>
         </div>
 
         {/* Actions droite */}
@@ -71,15 +71,14 @@ export function Header({ onOpenMobileMenu }: HeaderProps) {
             onClick={() => setIsSearchOpen(true)}
             className="flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-200 active:scale-95"
             style={{
-              background: "rgba(241,245,249,0.8)",
-              border: "1px solid rgba(255,255,255,0.6)",
+              background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              color: "var(--text-secondary)",
             }}
-            aria-label="Rechercher dans Artefacts Music"
+            aria-label="Rechercher"
           >
-            <Search className="h-[17px] w-[17px] text-slate-500" />
-            <span className="hidden sm:inline text-xs font-medium text-slate-500">
-              Rechercher…
-            </span>
+            <Search className="h-[16px] w-[16px]" />
+            <span className="hidden sm:inline text-xs font-medium">Rechercher…</span>
           </button>
 
           <SpaceSwitcher />
@@ -89,47 +88,44 @@ export function Header({ onOpenMobileMenu }: HeaderProps) {
             href="/notifications"
             className="relative h-9 w-9 flex items-center justify-center rounded-full transition-all duration-200 active:scale-95"
             style={{
-              background: "rgba(241,245,249,0.8)",
-              border: "1px solid rgba(255,255,255,0.6)",
+              background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              color: "var(--text-secondary)",
             }}
-            aria-label="Consulter les notifications"
+            aria-label="Notifications"
           >
-            <Bell className="h-[17px] w-[17px] text-slate-600" />
+            <Bell className="h-[17px] w-[17px]" />
             {unreadCount > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-rose-500 text-white text-[9px] font-black flex items-center justify-center ring-2 ring-white shadow-sm">
+              <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-rose-500 text-white text-[9px] font-black flex items-center justify-center ring-2 shadow-sm" style={{ ringColor: "var(--bg-base)" }}>
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-60" />
                 <span className="relative z-10">{unreadCount}</span>
               </span>
             )}
           </Link>
 
-          {/* Avatar / Profil */}
+          {/* Profil */}
           {isAuthenticated && user ? (
             <div className="flex items-center gap-1">
               <Link
                 href="/profil"
                 className="flex items-center gap-2 pl-1.5 pr-3 py-1 rounded-full transition-all duration-200 active:scale-95"
                 style={{
-                  background: "rgba(241,245,249,0.8)",
-                  border: "1px solid rgba(255,255,255,0.6)",
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.08)",
                 }}
-                aria-label={`Accéder au profil de ${user.prenom} ${user.nom}`}
+                aria-label={`Profil de ${user.prenom}`}
               >
-                <Avatar
-                  name={`${user.prenom} ${user.nom}`}
-                  size="sm"
-                  status="online"
-                />
-                <span className="text-xs font-semibold text-slate-700 hidden sm:inline">
+                <Avatar name={`${user.prenom} ${user.nom}`} size="sm" status="online" />
+                <span className="text-xs font-semibold hidden sm:inline" style={{ color: "var(--text-secondary)" }}>
                   {user.prenom}
                 </span>
               </Link>
 
               <button
                 onClick={logout}
-                className="h-9 w-9 flex items-center justify-center rounded-full text-slate-400 hover:text-rose-500 transition-all duration-200 active:scale-95"
+                className="h-9 w-9 flex items-center justify-center rounded-full transition-all duration-200 active:scale-95 hover:text-rose-400"
+                style={{ color: "var(--text-muted)" }}
                 aria-label="Se déconnecter"
-                title="Se déconnecter"
               >
                 <LogOut className="h-4 w-4" />
               </button>
@@ -137,10 +133,11 @@ export function Header({ onOpenMobileMenu }: HeaderProps) {
           ) : (
             <Link
               href="/"
-              className="text-xs font-semibold text-violet-600 px-3 py-2 rounded-full transition-all duration-200 active:scale-95"
+              className="text-xs font-semibold px-3 py-2 rounded-full transition-all duration-200 active:scale-95"
               style={{
-                background: "rgba(122,90,248,0.08)",
-                border: "1px solid rgba(122,90,248,0.15)",
+                background: "rgba(139,109,250,0.15)",
+                border: "1px solid rgba(139,109,250,0.25)",
+                color: "#A78BFA",
               }}
             >
               Se connecter

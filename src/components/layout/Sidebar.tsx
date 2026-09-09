@@ -19,58 +19,68 @@ export function Sidebar() {
   const categories: NavCategory[] = ["operations", "personal", "management"];
 
   return (
-    <aside className="hidden md:flex flex-col w-64 border-r border-slate-200/70 bg-white/80 backdrop-blur-2xl h-screen sticky top-0 shrink-0 select-none z-30 shadow-[1px_0_10px_0_rgba(15,23,42,0.02)]">
-      {/* Header avec Logo */}
+    <aside
+      className="hidden md:flex flex-col w-64 h-screen sticky top-0 shrink-0 select-none z-30"
+      style={{
+        background: "rgba(14, 12, 26, 0.96)",
+        backdropFilter: "blur(24px)",
+        WebkitBackdropFilter: "blur(24px)",
+        borderRight: "1px solid rgba(255,255,255,0.06)",
+        boxShadow: "2px 0 24px rgba(0,0,0,0.3)",
+      }}
+    >
+      {/* Logo */}
       <div className="px-5 pt-6 pb-4">
-        <Link href="/" className="inline-block hover:opacity-90 transition-all hover:scale-[1.01] active:scale-[0.99]">
+        <Link href="/" className="inline-block hover:opacity-90 transition-all active:scale-[0.99]">
           <BrandLogo size="md" priority />
         </Link>
       </div>
 
-      {/* Barre de recherche rapide style Linear */}
+      {/* Recherche */}
       <div className="px-4 mb-4">
         <SearchInput placeholder="Recherche (⌘K)..." showShortcut />
       </div>
 
-      {/* Liste des liens de navigation par catégorie */}
-      <div className="flex-1 overflow-y-auto px-3 space-y-6 scrollbar-thin">
+      {/* Navigation */}
+      <div className="flex-1 overflow-y-auto px-3 space-y-6">
         {categories.map((category) => {
-          const items = NAVIGATION_ITEMS.filter(
-            (item) => item.category === category
-          );
-
+          const items = NAVIGATION_ITEMS.filter((item) => item.category === category);
           if (items.length === 0) return null;
 
           return (
             <div key={category} className="space-y-1">
-              <div className="px-3 text-[11px] font-bold text-slate-400/90 uppercase tracking-widest mb-2.5">
+              <div
+                className="px-3 text-[10px] font-black uppercase tracking-widest mb-2.5"
+                style={{ color: "var(--text-muted)" }}
+              >
                 {CATEGORY_LABELS[category]}
               </div>
 
               {items.map((item) => {
                 const Icon = item.icon;
                 const isActive =
-                  item.href === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(item.href);
+                  item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
 
                 return (
                   <Link
                     key={item.id}
                     href={item.href}
-                    className={`group relative flex items-center justify-between px-3 py-2 text-sm font-semibold rounded-xl transition-all duration-200 ${
-                      isActive
-                        ? "bg-gradient-to-r from-mediterranean-500/10 via-mediterranean-500/5 to-transparent text-mediterranean-700 font-extrabold shadow-sm"
-                        : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/70"
-                    }`}
+                    className="group relative flex items-center justify-between px-3 py-2 text-sm font-semibold rounded-xl transition-all duration-200"
+                    style={{
+                      background: isActive
+                        ? "linear-gradient(135deg, rgba(139,109,250,0.18) 0%, rgba(139,109,250,0.06) 100%)"
+                        : "transparent",
+                      color: isActive ? "#A78BFA" : "var(--text-secondary)",
+                      fontWeight: isActive ? 700 : 500,
+                    }}
                   >
                     <div className="flex items-center gap-3 min-w-0">
                       <Icon
-                        className={`h-4 w-4 shrink-0 transition-transform duration-200 group-hover:scale-110 ${
-                          isActive
-                            ? "text-mediterranean-600 drop-shadow-sm"
-                            : "text-slate-400 group-hover:text-slate-600"
-                        }`}
+                        className="h-4 w-4 shrink-0 transition-all duration-200 group-hover:scale-110"
+                        style={{
+                          color: isActive ? "#A78BFA" : "var(--text-muted)",
+                          filter: isActive ? "drop-shadow(0 0 5px rgba(167,139,250,0.5))" : "none",
+                        }}
                       />
                       <span className="truncate">{item.label}</span>
                     </div>
@@ -85,8 +95,15 @@ export function Sidebar() {
                       </Badge>
                     )}
 
+                    {/* Indicateur gauche violet */}
                     {isActive && (
-                      <span className="absolute left-0 top-1.5 bottom-1.5 w-1 bg-gradient-to-b from-mediterranean-400 to-mediterranean-600 rounded-r-full shadow-glow" />
+                      <span
+                        className="absolute left-0 top-1.5 bottom-1.5 w-[3px] rounded-r-full"
+                        style={{
+                          background: "linear-gradient(180deg, #A78BFA, #F472B6)",
+                          boxShadow: "0 0 8px rgba(167,139,250,0.5)",
+                        }}
+                      />
                     )}
                   </Link>
                 );
@@ -96,8 +113,14 @@ export function Sidebar() {
         })}
       </div>
 
-      {/* Profil rapide en bas de sidebar */}
-      <div className="p-3 m-3 bg-gradient-to-b from-slate-50/90 to-slate-100/70 rounded-2xl border border-slate-200/80 shadow-sm flex items-center justify-between hover:border-slate-300 hover:shadow-card transition-all cursor-pointer group">
+      {/* Profil bas */}
+      <div
+        className="m-3 p-3 rounded-2xl flex items-center justify-between group cursor-pointer transition-all duration-200"
+        style={{
+          background: "rgba(255,255,255,0.04)",
+          border: "1px solid rgba(255,255,255,0.07)",
+        }}
+      >
         {isAuthenticated && user ? (
           <Link href="/profil" className="flex items-center gap-3 min-w-0 flex-1">
             <Avatar
@@ -106,33 +129,34 @@ export function Sidebar() {
               status="online"
             />
             <div className="min-w-0 flex-1">
-              <div className="text-xs font-bold text-slate-800 truncate">
+              <div className="text-xs font-bold truncate" style={{ color: "var(--text-primary)" }}>
                 {user.prenom} {user.nom}
               </div>
-              <div className="text-[11px] text-slate-500 truncate flex items-center gap-1 font-medium">
-                <Sparkles className="h-3 w-3 text-amber-500 shrink-0 animate-pulse" />
+              <div className="text-[11px] truncate flex items-center gap-1 font-medium mt-0.5" style={{ color: "var(--text-muted)" }}>
+                <Sparkles className="h-3 w-3 text-amber-400 shrink-0" />
                 <span>{ROLE_LABELS[user.role]}</span>
               </div>
             </div>
           </Link>
         ) : (
           <Link href="/" className="flex items-center gap-3 min-w-0 flex-1">
-            <div className="h-8 w-8 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center">
-              <UserCheck className="h-4 w-4" />
+            <div
+              className="h-8 w-8 rounded-full flex items-center justify-center"
+              style={{ background: "rgba(255,255,255,0.08)" }}
+            >
+              <UserCheck className="h-4 w-4" style={{ color: "var(--text-muted)" }} />
             </div>
             <div className="min-w-0 flex-1">
-              <div className="text-xs font-semibold text-slate-800 truncate">
-                Non connecté
-              </div>
-              <div className="text-[11px] text-mediterranean-600 font-medium truncate">
-                Choisir un profil
-              </div>
+              <div className="text-xs font-semibold truncate" style={{ color: "var(--text-secondary)" }}>Non connecté</div>
+              <div className="text-[11px] font-medium truncate" style={{ color: "#A78BFA" }}>Choisir un profil</div>
             </div>
           </Link>
         )}
-        <ChevronRight className="h-4 w-4 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-0.5 transition-transform shrink-0" />
+        <ChevronRight
+          className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5"
+          style={{ color: "var(--text-muted)" }}
+        />
       </div>
     </aside>
   );
 }
-

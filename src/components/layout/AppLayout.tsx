@@ -14,14 +14,16 @@ export function AppLayout({ children }: AppLayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen text-slate-900 antialiased relative">
-      {/* Halo ambiant fixe en arrière-plan */}
+    <div className="flex min-h-screen antialiased relative" style={{ background: "var(--bg-base)", color: "var(--text-primary)" }}>
+      {/* Halo ambiant premium dark — fixe, non interactif */}
       <div
         aria-hidden
         className="fixed inset-0 pointer-events-none z-0"
         style={{
           background:
-            "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(120,90,248,0.07) 0%, transparent 60%), radial-gradient(ellipse 50% 35% at 90% 50%, rgba(56,189,248,0.05) 0%, transparent 55%), radial-gradient(ellipse 45% 30% at 5% 80%, rgba(244,114,182,0.04) 0%, transparent 50%)",
+            "radial-gradient(ellipse 85% 55% at 50% -5%, rgba(107,76,230,0.18) 0%, transparent 60%), " +
+            "radial-gradient(ellipse 50% 40% at 92% 40%, rgba(139,109,250,0.09) 0%, transparent 55%), " +
+            "radial-gradient(ellipse 50% 35% at 6%  82%, rgba(240,98,146,0.08) 0%, transparent 55%)",
         }}
       />
 
