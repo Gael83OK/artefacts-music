@@ -1,74 +1,106 @@
-# Artefacts Music
+# Artefacts Music — Guide de Transmission Développeur
 
-Application professionnelle de gestion pour société de production musicale.
+Application web et mobile premium de gestion pour la société de production musicale **Artefacts Music**.
 
-## Fonctionnalités
+---
 
-- **Accueil** — Tableau de bord avec prochain événement, planning hebdomadaire et aperçu matériel
-- **Agenda** — Vue calendrier de tous les événements (prestations, répétitions, production, logistique)
-- **Prestations** — Gestion des concerts et événements
-- **Matériel** — Inventaire et suivi des équipements
-- **Profil** — Informations utilisateur, statistiques et équipe
-
-## Stack technique
-
-- **Next.js 15** (App Router)
-- **React 19**
-- **TypeScript**
-- **Tailwind CSS 3**
-- **Lucide React** (icônes)
-
-## Démarrage
+## 🚀 Démarrage Rapide
 
 ```bash
-# Installer les dépendances
+# 1. Installer les dépendances
 npm install
 
-# Lancer le serveur de développement
+# 2. Lancer le serveur de développement local
 npm run dev
+
+# 3. Vérifier le type checking TypeScript
+npx tsc --noEmit
+
+# 4. Vérifier la compilation et le build de production
+npm run build
 ```
 
-Ouvrir [http://localhost:3000](http://localhost:3000) dans le navigateur.
+Accès local : [http://localhost:3000](http://localhost:3000)
 
-## Architecture
+---
+
+## 🛠️ Stack Technique
+
+- **Framework** : Next.js 15.5 (App Router)
+- **Bibliothèque UI** : React 19
+- **Langage** : TypeScript 5 (Mode strict, 0 erreur de type)
+- **Styling** : Tailwind CSS 3 + Vanilla CSS Variables (Dark Theme Premium & Glassmorphism)
+- **Icônes** : Lucide React
+- **Hébergement & Déploiement** : Vercel (Intégration continue via GitHub)
+
+---
+
+## 📐 Architecture du Projet
 
 ```
 src/
-├── app/                  # Pages (App Router)
-│   ├── page.tsx          # Accueil
-│   ├── agenda/
-│   ├── prestations/
-│   ├── materiel/
-│   └── profil/
+├── app/                      # Routes & Pages (App Router Next.js 15)
+│   ├── globals.css           # Thème global (CSS variables dark mode & classes glass)
+│   ├── page.tsx              # Accueil / Dashboard (Sélecteur profil, prochain event)
+│   ├── calendrier/           # Agenda & Planning des événements
+│   ├── espace-musical/       # Répertoire des 121 morceaux Artefacts (A-Z)
+│   ├── prestations/          # Suivi des dates et prestations
+│   ├── materiel/             # Gestion et inventaire du parc matériel
+│   ├── repetitions/          # Organisation des sessions de répétition
+│   ├── documents/            # Espace documentaire & fiches de paie
+│   ├── annuaire/             # Annuaire des musiciens et techniciens
+│   └── profil/               # Espace profil utilisateur & paramètres
 ├── components/
-│   ├── ui/               # Composants réutilisables (Card, Badge, Logo)
-│   ├── layout/           # Layout, navigation
-│   └── home/             # Composants spécifiques à l'accueil
+│   ├── ui/                   # Composants UI réutilisables (Button, Card, Badge, Avatar, Modal...)
+│   ├── layout/               # Header, Sidebar, BottomNavigation (Mobile)
+│   ├── home/                 # Composants d'accueil (UserSpaceSelector, UpcomingEvent...)
+│   ├── auth/                 # Formulaires de connexion et changement de profil
+│   └── materiel/             # Modales et formulaires matériel
+├── context/
+│   └── AuthContext.tsx       # Gestion de la session utilisateur & switch de profils
 ├── lib/
-│   ├── mock-data.ts      # Données fictives
-│   ├── utils.ts          # Utilitaires
-│   └── constants.ts      # Configuration navigation
+│   ├── mock-users.ts         # Profils utilisateurs Artefacts
+│   ├── mock-songs.ts         # Répertoire complet (121 morceaux triés + tonalités)
+│   ├── mock-events.ts        # Événements et planning test
+│   ├── mock-materiel.ts      # Données de test matériel
+│   └── utils.ts              # Utilitaires (cn, formateurs de dates...)
 └── types/
-    └── index.ts          # Types TypeScript
+    ├── index.ts              # Export centralisé des types
+    ├── song.ts               # Types Chansons & Répertoire
+    ├── user.ts               # Types Musiciens & Profils
+    └── navigation.ts         # Types Navigation & Icônes
 ```
 
-## Design
+---
 
-Interface premium inspirée Apple avec palette Artefacts Music :
+## 🎨 Système de Design & Thème
 
-| Couleur           | Hex       | Usage                |
-|-------------------|-----------|----------------------|
-| Bleu Méditerranée | `#1E6FB8` | Couleur principale   |
-| Bleu clair        | `#7CC6F5` | Accents, fonds       |
-| Violet            | `#7A5AF8` | Répétitions          |
-| Rose              | `#E96BA8` | Production           |
-| Blanc cassé       | `#F8FAFC` | Fond de page         |
+Le projet utilise un **Dark Mode Premium** basé sur des variables CSS dans `src/app/globals.css` :
 
-## Évolution mobile
+| Variable | Valeur | Rôle / Usage |
+|---|---|---|
+| `--bg-base` | `#0D0B18` | Fond principal de l'application |
+| `--bg-surface` | `#141220` | Containers & barres de navigation |
+| `--bg-card` | `#252139` | Cartes & panneaux interactifs |
+| `--text-primary` | `#FFFFFF` | Titres, noms et informations prioritaires |
+| `--text-secondary` | `#D4CFEC` | Sous-titres, détails et artistes |
+| `--text-muted` | `#9D98BC` | Métadonnées et labels secondaires |
+| `--accent-violet` | `#8B6DFA` | Événements, badges et actions principales |
 
-Le projet est conçu mobile-first avec :
+### Utilitaires Glassmorphism :
+- `.glass-card` : Cartes translucides avec flou d'arrière-plan.
+- `.glass-panel` : Panneaux d'interface et filtres.
 
-- Conteneur max-width 512px (format smartphone)
-- Barre de navigation inférieure (bottom tab bar)
-- Safe area insets pour encoches
-- Métadonnées PWA-ready
+---
+
+## 🔐 Gestion des Utilisateurs (Auth)
+
+La gestion des utilisateurs repose sur `AuthContext.tsx` avec des profils pré-configurés dans `src/lib/mock-users.ts` (Musiciens, Techniciens, Production). Le composant `UserSpaceSelector` sur la page d'accueil permet de simuler le basculement d'utilisateur instantanément.
+
+---
+
+## 📦 Déploiement Vercel
+
+- **Dépôt Git** : Synchronisé avec GitHub (`main`).
+- **Déploiement Automatique** : Chaque `git push` sur `main` déclenche un build de production sur Vercel.
+- **Validation avant Push** : Toujours exécuter `npm run build` localement avant de pousser sur la branche principale pour garantir l'absence d'erreurs TypeScript / Next.js.
