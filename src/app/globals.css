@@ -44,6 +44,14 @@
     @apply font-sans selection:bg-violet-800/60 selection:text-white;
   }
 
+  /* Force les titres H1 à H6 en Blanc Pur sur fond sombre */
+  h1, h2, h3, h4, h5, h6 {
+    color: #FFFFFF !important;
+  }
+  .bg-white h1, .bg-white h2, .bg-white h3, .bg-white h4, .bg-white h5, .bg-white h6 {
+    color: #0F172A !important;
+  }
+
   /* Scrollbars fines */
   ::-webkit-scrollbar { width: 3px; height: 3px; }
   ::-webkit-scrollbar-track { background: transparent; }

@@ -19,17 +19,17 @@ export function PageHeader({
   className,
 }: PageHeaderProps) {
   return (
-    <div className={cn("mb-6 pb-4 border-b border-slate-200/70", className)}>
+    <div className={cn("mb-6 pb-4 border-b border-white/10", className)}>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-1">
           <div className="flex items-center gap-2.5 flex-wrap">
-            <h1 className="text-xl sm:text-2xl font-black tracking-tight text-slate-900">
+            <h1 className="text-xl sm:text-2xl font-black tracking-tight text-white drop-shadow-sm">
               {title}
             </h1>
             {badge && <div className="shrink-0">{badge}</div>}
           </div>
           {subtitle && (
-            <p className="text-xs sm:text-sm text-slate-500 font-medium max-w-2xl leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-300 font-medium max-w-2xl leading-relaxed">
               {subtitle}
             </p>
           )}
