@@ -44,51 +44,6 @@
     @apply font-sans selection:bg-violet-800/60 selection:text-white;
   }
 
-  /* ════════════════════════════════════════════
-     OVERRIDES DARK MODE — Classes Tailwind héritées
-     Remappent bg-white / bg-slate-* / text-slate-*
-     sans avoir à modifier chaque composant
-     ════════════════════════════════════════════ */
-
-  /* Fonds blancs → surface sombre */
-  .bg-white, .bg-white\/80, .bg-white\/85, .bg-white\/90 {
-    background-color: var(--bg-card) !important;
-  }
-
-  /* Fonds slate clairs → surfaces sombres */
-  .bg-slate-50, .bg-slate-100, .bg-slate-50\/70, .bg-slate-100\/70, .bg-slate-100\/80, .bg-slate-100\/90 {
-    background-color: var(--bg-surface) !important;
-  }
-
-  /* Textes slate sombres → texte clair */
-  .text-slate-900 { color: var(--text-primary)   !important; }
-  .text-slate-800 { color: var(--text-primary)   !important; }
-  .text-slate-700 { color: var(--text-secondary) !important; }
-  .text-slate-600 { color: var(--text-secondary) !important; }
-  .text-slate-500 { color: var(--text-muted)     !important; }
-  .text-slate-400 { color: var(--text-muted)     !important; }
-  .text-slate-300 { color: var(--text-faint)     !important; }
-
-  /* Bordures slate claires → bordures sombres subtiles */
-  .border-slate-100, .border-slate-200, .border-slate-200\/80, .border-slate-300 {
-    border-color: var(--border-subtle) !important;
-  }
-
-  /* Inputs / formulaires → dark */
-  input, textarea, select {
-    background-color: var(--bg-elevated) !important;
-    color: var(--text-primary) !important;
-    border-color: var(--border-medium) !important;
-  }
-  input::placeholder, textarea::placeholder {
-    color: var(--text-muted) !important;
-  }
-
-  /* Hover states slate → dark hover */
-  .hover\:bg-slate-50:hover, .hover\:bg-slate-100\/70:hover, .hover\:bg-slate-100\/80:hover {
-    background-color: var(--bg-elevated) !important;
-  }
-
   /* Scrollbars fines */
   ::-webkit-scrollbar { width: 3px; height: 3px; }
   ::-webkit-scrollbar-track { background: transparent; }
