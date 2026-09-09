@@ -49,11 +49,23 @@
   }
 
   .glass-panel {
-    @apply bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-sm;
+    @apply bg-white/80 backdrop-blur-xl border border-white/60 shadow-glass;
+  }
+
+  .glass-card-interactive {
+    @apply bg-white/85 backdrop-blur-md border border-slate-200/80 shadow-card transition-all duration-300 hover:shadow-card-hover hover:border-mediterranean-300/80 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.995];
   }
 
   .glass-nav {
-    @apply bg-white/85 backdrop-blur-xl border-b border-slate-200/70 shadow-sm;
+    @apply bg-white/80 backdrop-blur-xl border-b border-slate-200/60 shadow-sm;
+  }
+
+  .text-gradient-mediterranean {
+    @apply bg-gradient-to-r from-mediterranean-600 via-mediterranean-500 to-violet-600 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-stage {
+    @apply bg-gradient-to-r from-white via-slate-100 to-mediterranean-200 bg-clip-text text-transparent;
   }
 
   /* Micro-interactions & animations mobile-first */
@@ -62,11 +74,19 @@
   }
 
   .animate-slide-up {
-    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   .animate-scale-in {
-    animation: scaleIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: scaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2.5s infinite linear;
+  }
+
+  .animate-pulse-subtle {
+    animation: pulseSubtle 2s infinite ease-in-out;
   }
 }
 
@@ -84,7 +104,7 @@
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -95,10 +115,30 @@
 @keyframes scaleIn {
   from {
     opacity: 0;
-    transform: scale(0.97);
+    transform: scale(0.96);
   }
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.02);
   }
 }

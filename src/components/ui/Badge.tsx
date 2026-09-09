@@ -22,8 +22,25 @@ interface BadgeProps {
   label?: string;
   children?: React.ReactNode;
   size?: "sm" | "md";
+  pulse?: boolean;
   className?: string;
 }
+
+const variantDotStyles: Partial<Record<BadgeVariant, string>> = {
+  confirmed: "bg-emerald-500",
+  available: "bg-emerald-500",
+  success: "bg-emerald-500",
+  emerald: "bg-emerald-500",
+  pending: "bg-amber-500",
+  warning: "bg-amber-500",
+  amber: "bg-amber-500",
+  in_use: "bg-mediterranean-500",
+  mediterranean: "bg-mediterranean-500",
+  cancelled: "bg-rose-500",
+  maintenance: "bg-rose-500",
+  rose: "bg-rose-500",
+  violet: "bg-violet-500",
+};
 
 const variantStyles: Record<BadgeVariant, string> = {
   mediterranean: "bg-mediterranean-50/80 text-mediterranean-700 border border-mediterranean-200/80",
@@ -59,19 +76,27 @@ export function Badge({
   label,
   children,
   size = "md",
+  pulse = false,
   className,
 }: BadgeProps) {
   const content = children || label || defaultLabels[variant] || "";
+  const dotColor = variantDotStyles[variant] || "bg-mediterranean-500";
 
   return (
     <span
       className={cn(
-        "inline-flex items-center font-extrabold rounded-full tracking-tight transition-colors backdrop-blur-sm",
+        "inline-flex items-center gap-1.5 font-extrabold rounded-full tracking-tight transition-colors backdrop-blur-sm",
         size === "sm" ? "px-2 py-0.5 text-[10px]" : "px-2.5 py-0.5 text-xs",
         variantStyles[variant],
         className
       )}
     >
+      {pulse && (
+        <span className="relative flex h-2 w-2 shrink-0">
+          <span className={cn("animate-ping absolute inline-flex h-full w-full rounded-full opacity-75", dotColor)} />
+          <span className={cn("relative inline-flex rounded-full h-2 w-2", dotColor)} />
+        </span>
+      )}
       {content}
     </span>
   );

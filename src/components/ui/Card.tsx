@@ -5,6 +5,7 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   interactive?: boolean;
   bordered?: boolean;
+  variant?: "default" | "glass" | "elevated" | "flat" | "stage";
 }
 
 export function Card({
@@ -12,15 +13,26 @@ export function Card({
   className,
   interactive = false,
   bordered = true,
+  variant = "default",
   ...props
 }: CardProps) {
+  const variantStyles = {
+    default: "bg-white text-slate-900 shadow-[0_2px_12px_-2px_rgba(15,23,42,0.05),0_1px_3px_0_rgba(15,23,42,0.02)]",
+    glass: "bg-white/80 backdrop-blur-xl text-slate-900 shadow-glass",
+    elevated: "bg-white text-slate-900 shadow-glass-elevated",
+    flat: "bg-slate-50/70 text-slate-900 shadow-none",
+    stage: "bg-stage-gradient text-white shadow-glow-lg border-white/10",
+  };
+
   return (
     <div
       className={cn(
-        "rounded-2xl bg-white p-4 sm:p-5 text-slate-900 shadow-[0_2px_12px_-2px_rgba(15,23,42,0.06),0_1px_4px_0_rgba(15,23,42,0.03)] transition-all duration-200",
-        bordered && "border border-slate-200/80",
+        "rounded-2xl p-4 sm:p-5 transition-all duration-200 relative overflow-hidden",
+        variantStyles[variant],
+        bordered && variant !== "stage" && "border border-slate-200/80",
+        bordered && variant === "stage" && "border border-white/15",
         interactive &&
-          "cursor-pointer hover:shadow-md hover:border-mediterranean-300/90 active:scale-[0.99] active:bg-slate-50/50",
+          "cursor-pointer hover:shadow-card-hover hover:border-mediterranean-300/90 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] active:bg-slate-50/50",
         className
       )}
       {...props}

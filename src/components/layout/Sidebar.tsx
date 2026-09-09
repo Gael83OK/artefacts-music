@@ -19,10 +19,10 @@ export function Sidebar() {
   const categories: NavCategory[] = ["operations", "personal", "management"];
 
   return (
-    <aside className="hidden md:flex flex-col w-64 border-r border-slate-200/80 bg-white/90 backdrop-blur-xl h-screen sticky top-0 shrink-0 select-none z-30">
+    <aside className="hidden md:flex flex-col w-64 border-r border-slate-200/70 bg-white/80 backdrop-blur-2xl h-screen sticky top-0 shrink-0 select-none z-30 shadow-[1px_0_10px_0_rgba(15,23,42,0.02)]">
       {/* Header avec Logo */}
       <div className="px-5 pt-6 pb-4">
-        <Link href="/" className="inline-block hover:opacity-90 transition-opacity">
+        <Link href="/" className="inline-block hover:opacity-90 transition-all hover:scale-[1.01] active:scale-[0.99]">
           <BrandLogo size="md" priority />
         </Link>
       </div>
@@ -43,7 +43,7 @@ export function Sidebar() {
 
           return (
             <div key={category} className="space-y-1">
-              <div className="px-3 text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2">
+              <div className="px-3 text-[11px] font-bold text-slate-400/90 uppercase tracking-widest mb-2.5">
                 {CATEGORY_LABELS[category]}
               </div>
 
@@ -58,17 +58,17 @@ export function Sidebar() {
                   <Link
                     key={item.id}
                     href={item.href}
-                    className={`group relative flex items-center justify-between px-3 py-2 text-sm font-medium rounded-xl transition-all duration-150 ${
+                    className={`group relative flex items-center justify-between px-3 py-2 text-sm font-semibold rounded-xl transition-all duration-200 ${
                       isActive
-                        ? "bg-mediterranean-50 text-mediterranean-700 shadow-sm font-semibold"
-                        : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/80"
+                        ? "bg-gradient-to-r from-mediterranean-500/10 via-mediterranean-500/5 to-transparent text-mediterranean-700 font-extrabold shadow-sm"
+                        : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/70"
                     }`}
                   >
                     <div className="flex items-center gap-3 min-w-0">
                       <Icon
-                        className={`h-4 w-4 shrink-0 transition-colors ${
+                        className={`h-4 w-4 shrink-0 transition-transform duration-200 group-hover:scale-110 ${
                           isActive
-                            ? "text-mediterranean-600"
+                            ? "text-mediterranean-600 drop-shadow-sm"
                             : "text-slate-400 group-hover:text-slate-600"
                         }`}
                       />
@@ -79,13 +79,14 @@ export function Sidebar() {
                       <Badge
                         variant={item.badgeVariant || "mediterranean"}
                         size="sm"
+                        pulse={isActive}
                       >
                         {item.badge}
                       </Badge>
                     )}
 
                     {isActive && (
-                      <span className="absolute left-0 top-2 bottom-2 w-1 bg-mediterranean-500 rounded-r-full" />
+                      <span className="absolute left-0 top-1.5 bottom-1.5 w-1 bg-gradient-to-b from-mediterranean-400 to-mediterranean-600 rounded-r-full shadow-glow" />
                     )}
                   </Link>
                 );
@@ -96,7 +97,7 @@ export function Sidebar() {
       </div>
 
       {/* Profil rapide en bas de sidebar */}
-      <div className="p-3 m-3 bg-slate-50/80 rounded-2xl border border-slate-200/70 flex items-center justify-between hover:bg-slate-100/80 transition-colors cursor-pointer group">
+      <div className="p-3 m-3 bg-gradient-to-b from-slate-50/90 to-slate-100/70 rounded-2xl border border-slate-200/80 shadow-sm flex items-center justify-between hover:border-slate-300 hover:shadow-card transition-all cursor-pointer group">
         {isAuthenticated && user ? (
           <Link href="/profil" className="flex items-center gap-3 min-w-0 flex-1">
             <Avatar
@@ -105,11 +106,11 @@ export function Sidebar() {
               status="online"
             />
             <div className="min-w-0 flex-1">
-              <div className="text-xs font-semibold text-slate-800 truncate">
+              <div className="text-xs font-bold text-slate-800 truncate">
                 {user.prenom} {user.nom}
               </div>
-              <div className="text-[11px] text-slate-500 truncate flex items-center gap-1">
-                <Sparkles className="h-3 w-3 text-amber-500 shrink-0" />
+              <div className="text-[11px] text-slate-500 truncate flex items-center gap-1 font-medium">
+                <Sparkles className="h-3 w-3 text-amber-500 shrink-0 animate-pulse" />
                 <span>{ROLE_LABELS[user.role]}</span>
               </div>
             </div>
@@ -129,7 +130,7 @@ export function Sidebar() {
             </div>
           </Link>
         )}
-        <ChevronRight className="h-4 w-4 text-slate-400 group-hover:text-slate-600 shrink-0" />
+        <ChevronRight className="h-4 w-4 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-0.5 transition-transform shrink-0" />
       </div>
     </aside>
   );
