@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/Badge";
@@ -76,6 +76,8 @@ export default function HomePage() {
   const recentNotifications = user
     ? notificationService.getNotifications(user.id).slice(0, 3)
     : [];
+
+  const [profilesOpen, setProfilesOpen] = useState(false);
 
   const handleProfileClick = (profileId: string, isFirstLogin: boolean) => {
     if (isAuthenticated && user?.id === profileId) {
@@ -175,44 +177,99 @@ export default function HomePage() {
             </div>
           </button>
         ) : (
-          /* Sélecteur de profils */
+          /* Sélecteur de profils — accordéon collapse */
           <div
-            className="rounded-3xl p-5 space-y-3"
+            className="rounded-3xl overflow-hidden"
             style={{
               background: "var(--bg-card)",
               border: "1px solid rgba(255,255,255,0.08)",
               boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
             }}
           >
-            <p className="text-xs font-bold flex items-center gap-2" style={{ color: "var(--text-secondary)" }}>
-              <Sparkles className="h-4 w-4 text-violet-400" />
-              Choisissez votre espace
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {profiles.map((p) => (
-                <button
-                  key={p.id}
-                  onClick={() => handleProfileClick(p.id, p.isFirstLogin)}
-                  className="flex items-center justify-between gap-3 p-3.5 rounded-2xl transition-all duration-200 active:scale-[0.97] text-left group"
-                  style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.07)",
-                  }}
+            {/* Header cliquable */}
+            <button
+              onClick={() => setProfilesOpen((v) => !v)}
+              className="w-full flex items-center justify-between gap-3 px-5 py-4 transition-all duration-200 active:scale-[0.99] group"
+            >
+              <div className="flex items-center gap-2.5">
+                <div
+                  className="h-8 w-8 rounded-xl flex items-center justify-center shrink-0"
+                  style={{ background: "rgba(139,109,250,0.15)" }}
                 >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <Avatar name={`${p.prenom} ${p.nom}`} size="sm" />
-                    <div className="min-w-0">
-                      <div className="text-xs font-bold truncate" style={{ color: "var(--text-primary)" }}>
-                        {p.prenom} {p.nom}
-                      </div>
-                      <div className="text-[10px] font-medium truncate" style={{ color: "var(--text-muted)" }}>
-                        {getUserRoleLabel(p)}
+                  <Sparkles className="h-4 w-4 text-violet-400" />
+                </div>
+                <div className="text-left">
+                  <p className="text-sm font-bold" style={{ color: "var(--text-primary)" }}>
+                    Choisissez votre espace
+                  </p>
+                  <p className="text-[11px] font-medium" style={{ color: "var(--text-muted)" }}>
+                    {profilesOpen ? "Masquer les profils" : `${profiles.length} profils disponibles`}
+                  </p>
+                </div>
+              </div>
+
+              {/* Flèche rotative */}
+              <div
+                className="h-8 w-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300"
+                style={{
+                  background: profilesOpen ? "rgba(139,109,250,0.2)" : "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  transform: profilesOpen ? "rotate(180deg)" : "rotate(0deg)",
+                }}
+              >
+                <ChevronRight
+                  className="h-4 w-4 transition-all duration-300"
+                  style={{
+                    color: profilesOpen ? "#A78BFA" : "var(--text-muted)",
+                    transform: "rotate(90deg)",
+                  }}
+                />
+              </div>
+            </button>
+
+            {/* Liste des profils — expand animé */}
+            <div
+              style={{
+                maxHeight: profilesOpen ? `${profiles.length * 72 + 16}px` : "0px",
+                overflow: "hidden",
+                transition: "max-height 0.38s cubic-bezier(0.16, 1, 0.3, 1)",
+              }}
+            >
+              <div
+                className="px-3 pb-3 space-y-1.5"
+                style={{
+                  borderTop: "1px solid rgba(255,255,255,0.06)",
+                  paddingTop: "10px",
+                }}
+              >
+                {profiles.map((p) => (
+                  <button
+                    key={p.id}
+                    onClick={() => handleProfileClick(p.id, p.isFirstLogin)}
+                    className="w-full flex items-center justify-between gap-3 p-3.5 rounded-2xl transition-all duration-200 active:scale-[0.97] text-left group"
+                    style={{
+                      background: "rgba(255,255,255,0.04)",
+                      border: "1px solid rgba(255,255,255,0.06)",
+                    }}
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <Avatar name={`${p.prenom} ${p.nom}`} size="sm" />
+                      <div className="min-w-0">
+                        <div className="text-xs font-bold truncate" style={{ color: "var(--text-primary)" }}>
+                          {p.prenom} {p.nom}
+                        </div>
+                        <div className="text-[10px] font-medium truncate" style={{ color: "var(--text-muted)" }}>
+                          {getUserRoleLabel(p)}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <ArrowRight className="h-4 w-4 shrink-0 transition-all group-hover:translate-x-0.5" style={{ color: "var(--text-muted)" }} />
-                </button>
-              ))}
+                    <ArrowRight
+                      className="h-4 w-4 shrink-0 transition-all duration-200 group-hover:translate-x-0.5"
+                      style={{ color: "var(--text-muted)" }}
+                    />
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         )}
