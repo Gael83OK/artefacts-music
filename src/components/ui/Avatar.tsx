@@ -8,6 +8,7 @@ interface AvatarProps {
   status?: "online" | "offline" | "busy";
   className?: string;
   alt?: string;
+  style?: React.CSSProperties;
 }
 
 
@@ -18,6 +19,7 @@ export function Avatar({
   status,
   className,
   alt,
+  style,
 }: AvatarProps) {
 
   const initials = name
@@ -42,6 +44,7 @@ export function Avatar({
   return (
     <div
       className={cn("relative inline-flex shrink-0 items-center justify-center", className)}
+      style={style}
       aria-label={alt || `Photo de profil de ${name}`}
       role="img"
     >

@@ -96,7 +96,7 @@ export function Header({ onOpenMobileMenu }: HeaderProps) {
           >
             <Bell className="h-[17px] w-[17px]" />
             {unreadCount > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-rose-500 text-white text-[9px] font-black flex items-center justify-center ring-2 shadow-sm" style={{ ringColor: "var(--bg-base)" }}>
+              <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-rose-500 text-white text-[9px] font-black flex items-center justify-center ring-2 shadow-sm" style={{ ["--tw-ring-color" as string]: "var(--bg-base)" }}>
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-60" />
                 <span className="relative z-10">{unreadCount}</span>
               </span>
