@@ -191,7 +191,7 @@ export default function HomePage() {
             {/* Header cliquable */}
             <button
               onClick={() => setProfilesOpen((v) => !v)}
-              className="w-full flex items-center justify-between gap-3 px-5 py-4 transition-all duration-200 active:scale-[0.99] group"
+              className="w-full flex items-center justify-between gap-3 px-5 py-4 transition-all duration-200 active:scale-[0.99]"
             >
               <div className="flex items-center gap-2.5">
                 <div
@@ -205,41 +205,28 @@ export default function HomePage() {
                     Choisissez votre espace
                   </p>
                   <p className="text-[11px] font-medium" style={{ color: "var(--text-muted)" }}>
-                    {profilesOpen ? "Masquer les profils" : `${profiles.length} profils disponibles`}
+                    {profiles.length} profils disponibles
                   </p>
                 </div>
               </div>
 
-              {/* Flèche rotative — ↓ fermé, ↑ ouvert */}
-              <div
-                className="h-8 w-8 rounded-full flex items-center justify-center shrink-0"
+              {/* Flèche ↓ fermé → ↑ ouvert */}
+              <ChevronDown
+                className="h-5 w-5 shrink-0 transition-transform duration-300"
                 style={{
-                  background: profilesOpen ? "rgba(139,109,250,0.2)" : "rgba(255,255,255,0.06)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  transition: "background 0.3s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1)",
+                  color: profilesOpen ? "#A78BFA" : "var(--text-muted)",
                   transform: profilesOpen ? "rotate(180deg)" : "rotate(0deg)",
                 }}
-              >
-                <ChevronDown
-                  className="h-4 w-4"
-                  style={{ color: profilesOpen ? "#A78BFA" : "var(--text-muted)" }}
-                />
-              </div>
+              />
             </button>
 
-            {/* Liste des profils — expand animé */}
-            <div
-              style={{
-                maxHeight: profilesOpen ? `${profiles.length * 72 + 16}px` : "0px",
-                overflow: "hidden",
-                transition: "max-height 0.38s cubic-bezier(0.16, 1, 0.3, 1)",
-              }}
-            >
+            {/* Profils — rendu conditionnel strict, ABSENT du DOM si fermé */}
+            {profilesOpen && (
               <div
-                className="px-3 pb-3 space-y-1.5"
+                className="px-3 pb-3 space-y-1.5 animate-fade-in"
                 style={{
                   borderTop: "1px solid rgba(255,255,255,0.06)",
-                  paddingTop: "10px",
+                  paddingTop: "8px",
                 }}
               >
                 {profiles.map((p) => (
@@ -270,7 +257,7 @@ export default function HomePage() {
                   </button>
                 ))}
               </div>
-            </div>
+            )}
           </div>
         )}
 
