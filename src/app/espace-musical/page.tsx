@@ -104,50 +104,66 @@ export default function EspaceMusicalPage() {
       />
 
       {/* Barre de filtre & recherche instantanée */}
-      <div className="space-y-3 bg-slate-100/70 p-3.5 rounded-2xl border border-slate-200/80">
+      <div
+        className="space-y-3 p-3.5 rounded-2xl"
+        style={{
+          background: "var(--bg-elevated)",
+          border: "1px solid var(--border-subtle)",
+        }}
+      >
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
           {/* Onglets Filtres */}
-          <div className="flex flex-wrap items-center gap-1 bg-white p-1 rounded-xl border border-slate-200 w-full sm:w-auto">
+          <div
+            className="flex flex-wrap items-center gap-1 p-1 rounded-xl w-full sm:w-auto"
+            style={{
+              background: "var(--bg-surface)",
+              border: "1px solid var(--border-subtle)",
+            }}
+          >
             <button
               onClick={() => setActiveTab("all")}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+              className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
                 activeTab === "all"
                   ? "bg-violet-600 text-white shadow-sm font-bold"
-                  : "text-slate-600 hover:text-slate-900"
+                  : "hover:text-white"
               }`}
+              style={{ color: activeTab === "all" ? undefined : "var(--text-muted)" }}
             >
               Tous ({songs.length})
             </button>
 
             <button
               onClick={() => setActiveTab("a_travailler")}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+              className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
                 activeTab === "a_travailler"
                   ? "bg-amber-500 text-white shadow-sm font-bold"
-                  : "text-slate-600 hover:text-slate-900"
+                  : "hover:text-white"
               }`}
+              style={{ color: activeTab === "a_travailler" ? undefined : "var(--text-muted)" }}
             >
               À travailler
             </button>
 
             <button
               onClick={() => setActiveTab("en_cours")}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+              className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
                 activeTab === "en_cours"
                   ? "bg-violet-600 text-white shadow-sm font-bold"
-                  : "text-slate-600 hover:text-slate-900"
+                  : "hover:text-white"
               }`}
+              style={{ color: activeTab === "en_cours" ? undefined : "var(--text-muted)" }}
             >
               En cours
             </button>
 
             <button
               onClick={() => setActiveTab("pret")}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+              className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all ${
                 activeTab === "pret"
                   ? "bg-emerald-600 text-white shadow-sm font-bold"
-                  : "text-slate-600 hover:text-slate-900"
+                  : "hover:text-white"
               }`}
+              style={{ color: activeTab === "pret" ? undefined : "var(--text-muted)" }}
             >
               Prêts
             </button>
@@ -155,10 +171,10 @@ export default function EspaceMusicalPage() {
             {user && (
               <button
                 onClick={() => setActiveTab("favorites")}
-                className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors flex items-center gap-1 ${
+                className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all flex items-center gap-1 ${
                   activeTab === "favorites"
                     ? "bg-amber-500 text-white shadow-sm font-bold"
-                    : "text-amber-600 hover:text-amber-800"
+                    : "text-amber-400 hover:text-amber-300"
                 }`}
               >
                 <Star className="h-3.5 w-3.5 fill-current" />
@@ -170,13 +186,13 @@ export default function EspaceMusicalPage() {
 
         {/* Recherche instantanée */}
         <div className="relative w-full">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400 pointer-events-none" />
+          <Search className="absolute left-3 top-2.5 h-4 w-4 pointer-events-none" style={{ color: "var(--text-muted)" }} />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Rechercher un morceau par titre ou artiste..."
-            className="w-full h-9 pl-9 pr-3 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500/30"
+            className="w-full h-9 pl-9 pr-3 text-xs rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500/40"
           />
         </div>
       </div>
@@ -201,7 +217,9 @@ export default function EspaceMusicalPage() {
 
             return (
               <Link key={song.id} href={`/espace-musical/${song.id}`} className="block">
-                <Card interactive className="p-4 space-y-2 h-full flex flex-col justify-between">
+                <div
+                  className="glass-card-interactive p-4 rounded-2xl space-y-2 h-full flex flex-col justify-between"
+                >
                   <div>
                     <div className="flex items-start justify-between gap-2 mb-1.5">
                       <div className="flex flex-wrap items-center gap-1.5 min-w-0">
@@ -213,53 +231,61 @@ export default function EspaceMusicalPage() {
                         ))}
                       </div>
 
-                      {/* Bouton Étoile Favori */}
                       {user && (
                         <button
                           type="button"
                           onClick={(e) => handleToggleFav(e, song.id)}
-                          className="p-1 text-slate-400 hover:text-amber-500 rounded-lg transition-colors shrink-0"
+                          className="p-1 rounded-lg transition-colors shrink-0"
+                          style={{ color: isFav ? "#FCD34D" : "var(--text-faint)" }}
                           title="Ajouter aux favoris"
                         >
                           <Star
                             className={`h-4 w-4 ${
-                              isFav ? "fill-amber-500 text-amber-500" : ""
+                              isFav ? "fill-current" : ""
                             }`}
                           />
                         </button>
                       )}
                     </div>
 
-                    <h3 className="text-base font-bold text-slate-900 leading-snug break-words">
+                    <h3 className="text-sm font-bold leading-snug break-words" style={{ color: "var(--text-primary)" }}>
                       {song.titre}
                     </h3>
-                    <p className="text-xs font-semibold text-violet-600 mt-0.5">
+                    <p className="text-xs font-semibold mt-0.5" style={{ color: "var(--accent-violet)" }}>
                       {song.artiste}
                     </p>
+                    {song.arrangementInfo && (
+                      <p className="text-[11px] mt-1 font-medium" style={{ color: "var(--text-muted)" }}>
+                        {song.arrangementInfo}
+                      </p>
+                    )}
                   </div>
 
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 mt-2">
+                  <div
+                    className="pt-3 flex items-center justify-between text-xs mt-2"
+                    style={{ borderTop: "1px solid var(--border-subtle)", color: "var(--text-muted)" }}
+                  >
                     <div className="flex items-center gap-3 text-[11px]">
                       {audioCount > 0 && (
-                        <span className="flex items-center gap-1 text-violet-700 font-semibold">
-                          <FileAudio className="h-3.5 w-3.5 text-violet-500" />
+                        <span className="flex items-center gap-1 font-semibold" style={{ color: "#A78BFA" }}>
+                          <FileAudio className="h-3.5 w-3.5" />
                           {audioCount} audio{audioCount > 1 ? "s" : ""}
                         </span>
                       )}
                       {fileCount > 0 && (
-                        <span className="flex items-center gap-1">
-                          <FileText className="h-3.5 w-3.5 text-slate-400" />
+                        <span className="flex items-center gap-1" style={{ color: "var(--text-muted)" }}>
+                          <FileText className="h-3.5 w-3.5" />
                           {fileCount} fichier{fileCount > 1 ? "s" : ""}
                         </span>
                       )}
                     </div>
 
-                    <div className="flex items-center gap-1 font-semibold text-violet-600 shrink-0">
+                    <div className="flex items-center gap-1 font-semibold shrink-0" style={{ color: "#A78BFA" }}>
                       <span>Consulter</span>
                       <ArrowRight className="h-3.5 w-3.5" />
                     </div>
                   </div>
-                </Card>
+                </div>
               </Link>
             );
           })
