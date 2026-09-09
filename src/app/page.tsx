@@ -23,6 +23,7 @@ import {
   MapPin,
   Sparkles,
   ChevronRight,
+  ChevronDown,
   Mic2,
 } from "lucide-react";
 
@@ -30,6 +31,9 @@ export default function HomePage() {
   const router = useRouter();
   const { user, isAuthenticated, isHybridProduction, activeSpace } = useAuth();
   const profiles = authService.getAvailableProfiles();
+
+  // Accordéon profils — fermé par défaut
+  const [profilesOpen, setProfilesOpen] = useState(false);
 
   const nowStr = new Date().toISOString().split("T")[0];
 
@@ -76,8 +80,6 @@ export default function HomePage() {
   const recentNotifications = user
     ? notificationService.getNotifications(user.id).slice(0, 3)
     : [];
-
-  const [profilesOpen, setProfilesOpen] = useState(false);
 
   const handleProfileClick = (profileId: string, isFirstLogin: boolean) => {
     if (isAuthenticated && user?.id === profileId) {
@@ -208,21 +210,19 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Flèche rotative */}
+              {/* Flèche rotative — ↓ fermé, ↑ ouvert */}
               <div
-                className="h-8 w-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300"
+                className="h-8 w-8 rounded-full flex items-center justify-center shrink-0"
                 style={{
                   background: profilesOpen ? "rgba(139,109,250,0.2)" : "rgba(255,255,255,0.06)",
                   border: "1px solid rgba(255,255,255,0.08)",
+                  transition: "background 0.3s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1)",
                   transform: profilesOpen ? "rotate(180deg)" : "rotate(0deg)",
                 }}
               >
-                <ChevronRight
-                  className="h-4 w-4 transition-all duration-300"
-                  style={{
-                    color: profilesOpen ? "#A78BFA" : "var(--text-muted)",
-                    transform: "rotate(90deg)",
-                  }}
+                <ChevronDown
+                  className="h-4 w-4"
+                  style={{ color: profilesOpen ? "#A78BFA" : "var(--text-muted)" }}
                 />
               </div>
             </button>
